@@ -24,8 +24,17 @@ export enum SermonBasis {
   SYSTEMATIC_THEOLOGY = '系統神學',
 }
 
-export type SermonLength = 3 | 5 | 10;
-export const SERMON_LENGTH_OPTIONS: SermonLength[] = [3, 5, 10];
+export enum SermonLength {
+  THREE_MIN = '3',
+  FIVE_MIN = '5',
+  TEN_MIN = '10'
+}
+
+export const SERMON_LENGTH_OPTIONS: SermonLength[] = [
+  SermonLength.THREE_MIN,
+  SermonLength.FIVE_MIN,
+  SermonLength.TEN_MIN
+];
 
 export interface SlideContent {
   title: string;
@@ -322,6 +331,9 @@ export const SERMON_LLM_MODELS: LocalLLMModel[] = [
     hasVision: true
   }
 ];
+
+// Alias for backward compatibility
+export const OLLAMA_MODELS = SERMON_LLM_MODELS;
 
 export interface SermonGenerationState {
   selectedLLMModel: string;

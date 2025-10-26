@@ -1,17 +1,20 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Header } from './components/Header';
-import { InputForm } from './components/InputForm';
-import { LoadingScreen } from './components/LoadingScreen';
-import { ResultDisplay } from './components/ResultDisplay';
-import { SavedPresentations } from './components/SavedPresentations';
-import { AdminPanel } from './components/AdminPanel';
-import { LandingPage } from './components/LandingPage';
-import { BibleGame } from './components/BibleGame';
-import { TheologyAssistant } from './components/TheologyAssistant';
-import { BiblicalLanguage } from './components/BiblicalLanguage';
-import { TheologicalJourney } from './components/TheologicalJourney';
-import { generatePresentation as generateWithGemini } from './services/geminiService';
-import { generatePresentation as generateWithLocalLLM } from './services/localLLMService';
+import {
+  Header,
+  InputForm,
+  LoadingScreen,
+  ResultDisplay,
+  SavedPresentations,
+  AdminPanel,
+  LandingPage,
+  BibleGame,
+  TheologyAssistant,
+  BiblicalLanguage,
+  TheologicalJourney
+} from './src/components';
+// Sermon generation services - TO BE IMPLEMENTED
+// import { generatePresentation as generateWithGemini } from './services/geminiService';
+// import { generatePresentation as generateWithLocalLLM } from './services/localLLMService';
 import type { GeneratedPresentation, SavedPresentation, SystemPromptConfig, SermonBasis, SermonLength } from './types';
 import { AppState, AiEngine, DEFAULT_SYSTEM_PROMPT_CONFIG } from './types';
 
@@ -54,18 +57,21 @@ const App: React.FC = () => {
     setCurrentTopic(topic);
 
     try {
-      let presentation: GeneratedPresentation;
+      // Sermon generation - TO BE IMPLEMENTED
+      // For now, show a placeholder message
+      throw new Error('講道生成功能尚未實作，敬請期待');
 
-      if (aiEngine === AiEngine.GEMINI) {
-        presentation = await generateWithGemini(topic, keyPoints, sermonBasis, sermonLength, setLoadingMessage);
-      } else if (aiEngine === AiEngine.LOCAL_LLM && localLLMConfig) {
-        presentation = await generateWithLocalLLM(topic, keyPoints, sermonBasis, sermonLength, setLoadingMessage, localLLMConfig);
-      } else {
-        throw new Error('Please select an AI engine');
-      }
-
-      setGeneratedContent(presentation);
-      setAppState(AppState.RESULT);
+      // TODO: Implement sermon generation services
+      // let presentation: GeneratedPresentation;
+      // if (aiEngine === AiEngine.GEMINI) {
+      //   presentation = await generateWithGemini(topic, keyPoints, sermonBasis, sermonLength, setLoadingMessage);
+      // } else if (aiEngine === AiEngine.LOCAL_LLM && localLLMConfig) {
+      //   presentation = await generateWithLocalLLM(topic, keyPoints, sermonBasis, sermonLength, setLoadingMessage, localLLMConfig);
+      // } else {
+      //   throw new Error('Please select an AI engine');
+      // }
+      // setGeneratedContent(presentation);
+      // setAppState(AppState.RESULT);
     } catch (err) {
       console.error('Generation failed:', err);
       const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred.';
