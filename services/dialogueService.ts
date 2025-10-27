@@ -77,7 +77,7 @@ async function generateWithUnifiedAPI(
   return {
     responseText: responseText,
     sources: [
-      { title: "AI Generated Response", description: `Response generated using ${data.model || settings.model} (${data.provider || 'AI'})` }
+      { title: "AI 生成回應", description: `使用 ${data.model || settings.model} (${data.provider || 'AI'}) 生成的回應` }
     ]
   };
 }
@@ -93,14 +93,14 @@ export const generateDebateResponse = async (
 
     let prompt: string;
     if (history.length === 0) {
-        prompt = `The debate topic is: "${settings.topic}". Please provide your opening statement and supporting sources. Format your response as JSON with 'responseText' and 'sources' fields.`;
+        prompt = `辯論主題是：「${settings.topic}」。請提供你的開場陳述和支持來源。將回應格式化為 JSON，包含 'responseText' 和 'sources' 欄位。`;
     } else {
-        prompt = `It's your turn, ${persona.name}. The debate topic is "${settings.topic}".
-Here is the debate so far:
+        prompt = `輪到你了，${persona.name}。辯論主題是「${settings.topic}」。
+到目前為止的辯論內容如下：
 ---
 ${historyText}
 ---
-Please provide your response to the last statement, along with your supporting sources. Format your response as JSON with 'responseText' and 'sources' fields where sources is an array of objects with 'title' and 'description'.`;
+請對最後一個陳述提供你的回應，以及你的支持來源。將回應格式化為 JSON，包含 'responseText' 和 'sources' 欄位，其中 sources 是包含 'title' 和 'description' 的物件陣列。`;
     }
 
     const provider = getProviderFromModel(settings.model);
@@ -146,10 +146,10 @@ Please provide your response to the last statement, along with your supporting s
 
   } catch (error) {
     console.error("Error generating debate response:", error);
-    const errorMessage = error instanceof Error ? error.message : "An unknown error occurred.";
+    const errorMessage = error instanceof Error ? error.message : "發生未知錯誤。";
     return {
-      responseText: `I encountered an error: ${errorMessage}. Please try a different model or check your API configuration.`,
-      sources: [{ title: "Error Information", description: "Could not fetch a valid response from the API."}]
+      responseText: `我遇到了一個錯誤：${errorMessage}。請嘗試不同的模型或檢查你的 API 設定。`,
+      sources: [{ title: "錯誤資訊", description: "無法從 API 取得有效回應。"}]
     };
   }
 };
@@ -206,7 +206,7 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
 
         const theologianPromises = THEOLOGIAN_PERSONAS.slice(0, 4).map(persona => ai.models.generateContent({
             model: settings.model,
-            contents: `Please respond to the following user statement: "${userInput}"`,
+            contents: `請回應以下使用者陳述：「${userInput}」`,
             config: {
                 systemInstruction: persona.systemPrompt,
                 temperature: 0.7,
@@ -224,7 +224,7 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
 
         const [analysisResult, ...theologianResults] = await Promise.allSettled([analysisPromise, ...theologianPromises]);
 
-        let analysis: UserInputAnalysis = { viewpoint: 'Error analyzing input.', sources: []};
+        let analysis: UserInputAnalysis = { viewpoint: '分析輸入時發生錯誤。', sources: []};
         if (analysisResult.status === 'fulfilled') {
             analysis = JSON.parse(analysisResult.value.text.trim());
         }
@@ -236,7 +236,7 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
                 return { ...parsed, personaName: persona.name, denomination: persona.denomination, color: persona.color };
             } else {
                 return {
-                    responseText: 'Failed to generate a response for this theologian.',
+                    responseText: '無法為此神學家生成回應。',
                     sources: [],
                     personaName: persona.name,
                     denomination: persona.denomination,
@@ -249,7 +249,7 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
     }
 
     // For non-Gemini models, use unified API (Ollama/OpenAI)
-    const analysisPrompt = `${ANALYZER_SYSTEM_PROMPT}\n\nUser statement: ${userInput}\n\nProvide your analysis as JSON with 'viewpoint' and 'sources' fields.`;
+    const analysisPrompt = `${ANALYZER_SYSTEM_PROMPT}\n\n使用者陳述：${userInput}\n\n請以 JSON 格式提供你的分析，包含 'viewpoint' 和 'sources' 欄位。`;
     const analysisResponse = await fetch('/api/unified/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -262,7 +262,7 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
         })
     });
 
-    let analysis: UserInputAnalysis = { viewpoint: 'Analysis unavailable.', sources: [] };
+    let analysis: UserInputAnalysis = { viewpoint: '分析不可用。', sources: [] };
     if (analysisResponse.ok) {
         try {
             const data = await analysisResponse.json();
@@ -285,7 +285,7 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
                 body: JSON.stringify({
                     messages: [
                         { role: 'system', content: persona.systemPrompt },
-                        { role: 'user', content: `Please respond to the following user statement: "${userInput}". Format as JSON with 'responseText' and 'sources' fields.` }
+                        { role: 'user', content: `請回應以下使用者陳述：「${userInput}」。以 JSON 格式回應，包含 'responseText' 和 'sources' 欄位。` }
                     ],
                     model: settings.model,
                     temperature: 0.7,
@@ -299,7 +299,7 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
             const parsed = JSON.parse(responseText);
 
             return {
-                responseText: parsed.responseText || responseText || 'No response generated.',
+                responseText: parsed.responseText || responseText || '未生成回應。',
                 sources: parsed.sources || [],
                 personaName: persona.name,
                 denomination: persona.denomination,
@@ -307,7 +307,7 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
             };
         } catch (error) {
             return {
-                responseText: 'Failed to generate response.',
+                responseText: '無法生成回應。',
                 sources: [],
                 personaName: persona.name,
                 denomination: persona.denomination,
