@@ -61,8 +61,8 @@ export const THEOLOGIAN_PERSONAS: DialoguePersona[] = [
 ];
 
 export const DEFAULT_DIALOGUE_SETTINGS: DialogueSettings = {
-  topic: 'The nature of free will and divine sovereignty.',
-  model: 'gemini-2.5-flash', // Default to best performing model
+  topic: '自由意志與神的主權之本質',
+  model: 'kimi-k2:1t-cloud', // Default to most powerful Ollama Cloud model (1T parameters)
   numDebaters: 2,
   userIsParticipant: false,
 };

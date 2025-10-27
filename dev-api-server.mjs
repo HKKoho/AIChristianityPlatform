@@ -271,8 +271,8 @@ async function handleUnifiedChat(requestData) {
   // Fallback to default priority chain
   console.log('🔄 Falling back to default priority chain...');
 
-  // Ollama model priority (using real available models)
-  const ollamaModels = ['llama3:8b', 'qwen2.5:3b', 'gemma3:4b'];
+  // Ollama Cloud model priority (large cloud models first, then standard)
+  const ollamaModels = ['kimi-k2:1t-cloud', 'deepseek-v3.1:671b-cloud', 'qwen3-coder:480b-cloud', 'gpt-oss:120b-cloud'];
 
   // Try Ollama with multiple models
   if (process.env.OLLAMA_API_KEY) {
@@ -350,8 +350,11 @@ async function isLocalOllamaAvailable(model) {
 }
 
 async function callOllama(model, messages, temperature, topP, maxTokens) {
-  // Check if model is available locally first
-  const isLocal = await isLocalOllamaAvailable(model);
+  // Cloud models (with -cloud suffix) always use Ollama Cloud API
+  const isCloudModel = model.includes('-cloud') || model.includes(':cloud');
+
+  // Check if model is available locally (only for non-cloud models)
+  const isLocal = !isCloudModel && await isLocalOllamaAvailable(model);
 
   const apiUrl = isLocal
     ? 'http://localhost:11434/api/chat'
@@ -495,8 +498,9 @@ server.listen(PORT, () => {
   console.log(`   OLLAMA_API_KEY: ${process.env.OLLAMA_API_KEY ? '✓ Set' : '✗ Not set'}`);
   console.log(`   OLLAMA_API_URL: ${process.env.OLLAMA_API_URL || 'https://api.ollama.cloud'}\n`);
   console.log('Priority Chain:');
-  console.log('   1️⃣ Ollama (llama3:8b)');
-  console.log('   2️⃣ Ollama (qwen2.5:3b)');
-  console.log('   3️⃣ Google Gemini (gemini-2.0-flash-exp)');
-  console.log('   4️⃣ OpenAI (gpt-4o)\n');
+  console.log('   1️⃣ Ollama Cloud (kimi-k2:1t-cloud) - 1T params');
+  console.log('   2️⃣ Ollama Cloud (deepseek-v3.1:671b-cloud) - 671B params');
+  console.log('   3️⃣ Ollama Cloud (qwen3-coder:480b-cloud) - 480B params');
+  console.log('   4️⃣ Google Gemini (gemini-2.0-flash-exp)');
+  console.log('   5️⃣ OpenAI (gpt-4o)\n');
 });

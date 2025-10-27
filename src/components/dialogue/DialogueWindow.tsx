@@ -65,7 +65,7 @@ const DialogueMessage: React.FC<{
                  <button
                   onClick={handlePlayClick}
                   className="p-1.5 rounded-md bg-black/10 text-white/70 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200 hover:bg-black/30"
-                  aria-label="Play audio"
+                  aria-label="播放語音"
                 >
                   <SpeakerOnIcon className={`h-4 w-4 ${isCurrentlyPlaying ? 'text-sky-400' : ''}`} />
                  </button>
@@ -73,7 +73,7 @@ const DialogueMessage: React.FC<{
               <button
                 onClick={handleCopy}
                 className="p-1.5 rounded-md bg-black/10 text-white/70 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200 hover:bg-black/30"
-                aria-label="Copy response"
+                aria-label="複製回應"
               >
                 {isCopied ? (
                     <CheckIcon className="h-4 w-4 text-emerald-400" />
@@ -142,14 +142,14 @@ const UserInputForm: React.FC<{ onUserSubmit: (text: string) => void, isLoading:
                     onKeyDown={handleKeyDown}
                     rows={2}
                     className="w-full bg-gray-700 text-white rounded-lg border-gray-600 focus:ring-blue-500 focus:border-blue-500 shadow-sm px-4 py-3 pr-12 disabled:opacity-50"
-                    placeholder="It's your turn to respond..."
+                    placeholder="輪到你回應了..."
                     disabled={isLoading}
                 />
                 <button
                     type="submit"
                     disabled={isLoading || !text.trim()}
                     className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    aria-label="Send message"
+                    aria-label="發送訊息"
                 >
                     <PaperAirplaneIcon className="h-5 w-5" />
                 </button>
@@ -176,15 +176,15 @@ export const DialogueWindow: React.FC<DialogueWindowProps> = ({ dialogue, person
       <div id="messages" className="flex flex-col space-y-4 p-3 overflow-y-auto flex-grow">
         {!isStarted && !isLoading && (
           <div className="flex items-center justify-center h-full">
-            <p className="text-gray-400">The debate will appear here. Configure the theologians and press "Start Debate".</p>
+            <p className="text-gray-400">辯論將在此顯示。請設定神學家並按「開始辯論」。</p>
           </div>
         )}
         {dialogue.map((turn) => {
            const personaForTurn = personaMap.get(turn.personaName);
            return (
-            <DialogueMessage 
-                key={turn.id} 
-                turn={turn} 
+            <DialogueMessage
+                key={turn.id}
+                turn={turn}
                 personaColor={personaForTurn?.color || '#4B5563'}
                 onPlayAudio={onPlayTurnAudio}
                 isCurrentlyPlaying={currentlyPlayingTurnId === turn.id}
@@ -195,11 +195,11 @@ export const DialogueWindow: React.FC<DialogueWindowProps> = ({ dialogue, person
             <div className="flex justify-start gap-2">
                 <div className="flex flex-col space-y-2 text-md max-w-lg mx-2 items-start">
                     <div>
-                      <span 
+                      <span
                         className={`px-4 py-2 rounded-lg inline-block text-white animate-pulse`}
                         style={{ backgroundColor: !isUserTurn ? (personas.find(p => p.name === currentTurnTakerName)?.color || '#4B5563') : '#4B5563' }}
                       >
-                        Thinking...
+                        思考中...
                       </span>
                     </div>
                 </div>
@@ -215,7 +215,7 @@ export const DialogueWindow: React.FC<DialogueWindowProps> = ({ dialogue, person
                 disabled={isLoading}
                 className="w-full max-w-md bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
             >
-                Next Turn: {currentTurnTakerName}
+                下一輪：{currentTurnTakerName}
             </button>
          </div>
       )}

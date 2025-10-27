@@ -34,23 +34,23 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
       <div className="flex justify-between items-center">
         <h3 className="text-xl font-bold text-white flex items-center">
           <SparklesIcon className="mr-2 h-6 w-6 text-indigo-400" />
-          Debate Configuration
+          辯論設定
         </h3>
         <button
             onClick={() => setShowMbtiInfo(!showMbtiInfo)}
             className="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors px-3 py-1 rounded-md hover:bg-gray-700"
         >
-            {showMbtiInfo ? 'Hide MBTI Info' : 'What is MBTI?'}
+            {showMbtiInfo ? '隱藏 MBTI 資訊' : '什麼是 MBTI？'}
         </button>
       </div>
       
       {showMbtiInfo && (
         <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-700 max-h-48 overflow-y-auto">
-            <h4 className="text-md font-semibold text-gray-200 mb-2">MBTI Personality Types</h4>
+            <h4 className="text-md font-semibold text-gray-200 mb-2">MBTI 性格類型</h4>
             <ul className="space-y-2 text-sm">
                 {Object.entries(MBTI_DESCRIPTIONS).map(([type, desc]) => (
                     <li key={type} className="flex flex-col sm:flex-row">
-                        <strong className="text-gray-300 w-16 flex-shrink-0">{type}:</strong> 
+                        <strong className="text-gray-300 w-16 flex-shrink-0">{type}:</strong>
                         <span className="text-gray-400">{desc}</span>
                     </li>
                 ))}
@@ -60,7 +60,7 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
 
       <div>
         <label htmlFor="topic" className="block text-sm font-medium text-gray-300 mb-1">
-          Debate Topic
+          辯論主題
         </label>
         <input
           type="text"
@@ -73,7 +73,7 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
       </div>
        <div>
         <label htmlFor="model" className="block text-sm font-medium text-gray-300 mb-1">
-          Language Model
+          語言模型
         </label>
         <select
           id="model"
@@ -82,15 +82,21 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
           disabled={disabled}
           className="w-full bg-gray-700 text-white rounded-md border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm px-3 py-2 disabled:opacity-50"
         >
-          <optgroup label="☁️ Ollama Cloud">
-            <option value="llama3:8b">Llama 3 8B ☁️</option>
-            <option value="llama3.2:3b">Llama 3.2 3B ☁️</option>
-            <option value="qwen2.5:3b">Qwen 2.5 3B ☁️</option>
-            <option value="qwen2.5-coder:3b">Qwen 2.5 Coder 3B ☁️</option>
-            <option value="gemma3:4b">Gemma 3 4B ☁️</option>
-            <option value="phi3.5:latest">Phi 3.5 ☁️</option>
-            <option value="llama3.2:1b">Llama 3.2 1B ☁️</option>
-            <option value="qwen2.5:1.5b">Qwen 2.5 1.5B ☁️</option>
+          <optgroup label="☁️ Ollama Cloud - Large Models (Preview)">
+            <option value="kimi-k2:1t-cloud">Kimi K2 1T Cloud 🏆 (1 Trillion)</option>
+            <option value="deepseek-v3.1:671b-cloud">DeepSeek V3.1 671B Cloud 🏆</option>
+            <option value="qwen3-coder:480b-cloud">Qwen3 Coder 480B Cloud 🏆</option>
+            <option value="gpt-oss:120b-cloud">GPT-OSS 120B Cloud 🏆</option>
+            <option value="gpt-oss:20b-cloud">GPT-OSS 20B Cloud</option>
+            <option value="glm-4.6:cloud">GLM 4.6 Cloud</option>
+          </optgroup>
+          <optgroup label="☁️ Ollama Cloud - Standard Models">
+            <option value="llama3:8b">Llama 3 8B</option>
+            <option value="llama3.2:3b">Llama 3.2 3B</option>
+            <option value="qwen2.5:3b">Qwen 2.5 3B</option>
+            <option value="qwen2.5-coder:3b">Qwen 2.5 Coder 3B</option>
+            <option value="gemma3:4b">Gemma 3 4B</option>
+            <option value="phi3.5:latest">Phi 3.5</option>
           </optgroup>
           <optgroup label="🌟 Google Gemini">
             <option value="gemini-2.5-flash">Gemini 2.5 Flash (快速)</option>
@@ -118,19 +124,19 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
         </select>
         <p className="text-xs text-gray-400 mt-1">
           {settings.model.startsWith('gemini-2.5') ?
-            '🌟 Recommended: Best performance and reasoning' :
+            '🌟 推薦：最佳性能與推理能力' :
             settings.model.startsWith('gpt-4') ?
-            '🤖 OpenAI: Strong reasoning capabilities' :
+            '🤖 OpenAI：強大的推理能力' :
             settings.model.includes(':') ?
-            '☁️ Ollama: Lightweight and fast models' :
-            '🌟 Fast and reliable'
+            '☁️ Ollama：輕量快速模型' :
+            '🌟 快速且可靠'
           }
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
         <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-            Number of Theologians
+            神學家數量
             </label>
             <div className="flex items-center space-x-6">
             {[2, 3, 4, 5].map((num) => (
@@ -162,7 +168,7 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
                 className="h-4 w-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500 disabled:opacity-50 cursor-pointer"
             />
             <label htmlFor="user-participant" className="ml-2 block text-sm text-gray-300">
-                User Participate in the debate
+                使用者參與辯論
             </label>
         </div>
       </div>

@@ -27,7 +27,7 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
   const [currentTurnIndex, setCurrentTurnIndex] = useState<number>(0);
 
   // Analysis Mode State
-  const [analysisInput, setAnalysisInput] = useState<string>('Examine the concept of Theosis (deification) in Eastern Orthodox theology compared to the Western view of sanctification.');
+  const [analysisInput, setAnalysisInput] = useState<string>('探討東正教神學中的成神論（Theosis）與西方聖潔觀的比較。');
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [analysisResult, setAnalysisResult] = useState<UserInputAnalysis | null>(null);
   const [theologianResponses, setTheologianResponses] = useState<TheologianResponse[]>([]);
@@ -42,7 +42,7 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
   // Derived state for dialogue mode
   const totalParticipants = settings.userIsParticipant ? personas.length + 1 : personas.length;
   const isUserTurn = settings.userIsParticipant && currentTurnIndex === personas.length;
-  const currentTurnTakerName = isUserTurn ? "Your Turn" : personas[currentTurnIndex]?.name || '...';
+  const currentTurnTakerName = isUserTurn ? "輪到你了" : personas[currentTurnIndex]?.name || '...';
 
   // --- Audio Logic ---
   useEffect(() => {
@@ -230,11 +230,11 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
              <div className="flex flex-col sm:flex-row gap-4 mt-4">
                 {!isStarted ? (
                     <button onClick={startDialogue} className="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md flex-1">
-                        Start Debate
+                        開始辯論
                     </button>
                 ) : (
                     <button onClick={endDialogue} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md flex-1">
-                        End Debate
+                        結束辯論
                     </button>
                 )}
             </div>
@@ -274,7 +274,7 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
         <div className="w-full lg:w-2/3 mx-auto">
              <div className="bg-gray-800 p-4 rounded-lg shadow-lg border border-gray-700 space-y-3">
                 <label htmlFor="analysis-input" className="block text-sm font-medium text-gray-300">
-                    Enter Theological Topic for Analysis
+                    輸入神學主題進行分析
                 </label>
                 <textarea
                     id="analysis-input"
@@ -283,10 +283,10 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
                     rows={4}
                     disabled={isAnalyzing}
                     className="w-full bg-gray-700 text-white rounded-md border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm px-3 py-2 disabled:opacity-50"
-                    placeholder="e.g., Compare and contrast the Catholic and Protestant views on justification."
+                    placeholder="例如：比較天主教與新教對稱義的觀點"
                 />
                  <button onClick={handleAnalysisSubmit} disabled={isAnalyzing} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
-                    {isAnalyzing ? 'Analyzing...' : 'Analyze & Discuss'}
+                    {isAnalyzing ? '分析中...' : '分析並討論'}
                 </button>
              </div>
         </div>
@@ -308,35 +308,35 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
 
         <header className="text-center mb-8 mt-12">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-            Theological <span className="text-sky-400">Dialogue</span> Simulator
+            神學<span className="text-sky-400">對話</span>模擬器
           </h1>
           <p className="text-gray-400 mt-2 text-lg">
-              Engage with AI theologians through structured dialogue or multi-perspective analysis.
+              透過結構化對話或多元觀點分析，與 AI 神學家進行深度交流
           </p>
         </header>
 
         <div className="flex justify-center items-center gap-4 mb-8">
             <div className="bg-gray-800 p-1 rounded-lg flex gap-1 border border-gray-700">
                 <button onClick={() => setMode('dialogue')} className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${mode === 'dialogue' ? 'bg-sky-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}>
-                    Debate Mode
+                    辯論模式
                 </button>
                 <button onClick={() => setMode('analysis')} className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${mode === 'analysis' ? 'bg-indigo-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}>
-                    Analysis Mode
+                    分析模式
                 </button>
             </div>
             {mode === 'dialogue' && (
               <div className="flex items-center space-x-2 bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5">
                   <label htmlFor="tts-toggle" className="text-sm font-medium text-gray-300">
-                      Enable Audio
+                      啟用語音
                   </label>
                   <button
                       id="tts-toggle"
                       onClick={() => setIsTtsEnabled(!isTtsEnabled)}
                       className="relative inline-flex items-center h-6 rounded-full w-11 transition-colors"
                       style={{ backgroundColor: isTtsEnabled ? '#0ea5e9' : '#4b5563' }}
-                      aria-label="Enable text-to-speech"
+                      aria-label="啟用文字轉語音"
                   >
-                      <span className="sr-only">Enable Audio</span>
+                      <span className="sr-only">啟用語音</span>
                       <span
                           className="inline-block w-4 h-4 transform bg-white rounded-full transition-transform"
                           style={{ transform: isTtsEnabled ? 'translateX(22px)' : 'translateX(2px)' }}
@@ -345,7 +345,7 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
               </div>
             )}
              <button onClick={resetAll} disabled={isLoading || isAnalyzing} className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
-                Reset All
+                重置全部
               </button>
         </div>
 
