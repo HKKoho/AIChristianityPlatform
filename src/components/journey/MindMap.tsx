@@ -82,10 +82,10 @@ const MindMap: React.FC<MindMapProps> = ({ data }) => {
 
   return (
     <div className="w-full h-full p-4 bg-slate-800/50 border-l border-slate-700">
-        <h3 className="text-xl font-bold text-purple-300 mb-2">Concept Map</h3>
+        <h3 className="text-xl font-bold text-purple-300 mb-2">思維導圖</h3>
         {data.nodes.length === 0 ? (
             <div className="flex items-center justify-center h-full text-slate-500">
-                <p>Generate a map from your text to visualize connections.</p>
+                <p>從您的文字生成地圖以視覺化概念連結。</p>
             </div>
         ) : (
             <svg ref={svgRef} className="w-full h-full"></svg>
