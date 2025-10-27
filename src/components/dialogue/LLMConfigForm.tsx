@@ -82,13 +82,15 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
           disabled={disabled}
           className="w-full bg-gray-700 text-white rounded-md border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm px-3 py-2 disabled:opacity-50"
         >
-          <optgroup label="🥇 Ollama Cloud (Primary)">
-            <option value="kimi-k2:1t-cloud">Kimi K2 1T Cloud ☁️ (最強)</option>
-            <option value="qwen-coder:480b-cloud">Qwen Coder 480B Cloud ☁️</option>
-            <option value="deepseek-v3.1:671b">DeepSeek V3.1 671B Cloud ☁️</option>
-            <option value="gpt-oss:120b">GPT-OSS 120B Cloud ☁️</option>
-            <option value="qwen3-coder:480b">Qwen3 Coder 480B Cloud ☁️</option>
-            <option value="gpt-oss:20b">GPT-OSS 20B Cloud ☁️</option>
+          <optgroup label="☁️ Ollama Cloud">
+            <option value="llama3:8b">Llama 3 8B ☁️</option>
+            <option value="llama3.2:3b">Llama 3.2 3B ☁️</option>
+            <option value="qwen2.5:3b">Qwen 2.5 3B ☁️</option>
+            <option value="qwen2.5-coder:3b">Qwen 2.5 Coder 3B ☁️</option>
+            <option value="gemma3:4b">Gemma 3 4B ☁️</option>
+            <option value="phi3.5:latest">Phi 3.5 ☁️</option>
+            <option value="llama3.2:1b">Llama 3.2 1B ☁️</option>
+            <option value="qwen2.5:1.5b">Qwen 2.5 1.5B ☁️</option>
           </optgroup>
           <optgroup label="🌟 Google Gemini">
             <option value="gemini-2.5-flash">Gemini 2.5 Flash (快速)</option>
@@ -115,9 +117,13 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
           </optgroup>
         </select>
         <p className="text-xs text-gray-400 mt-1">
-          {settings.model.includes('cloud') || settings.model.includes(':') ?
-            '☁️ Cloud models provide superior theological reasoning capabilities' :
-            '🌟 Fast and reliable for general debates'
+          {settings.model.startsWith('gemini-2.5') ?
+            '🌟 Recommended: Best performance and reasoning' :
+            settings.model.startsWith('gpt-4') ?
+            '🤖 OpenAI: Strong reasoning capabilities' :
+            settings.model.includes(':') ?
+            '☁️ Ollama: Lightweight and fast models' :
+            '🌟 Fast and reliable'
           }
         </p>
       </div>

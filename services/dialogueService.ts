@@ -61,7 +61,7 @@ async function generateWithUnifiedAPI(
   }
 
   const data = await response.json();
-  const responseText = data.text || data.response || '';
+  const responseText = data.content || data.text || data.response || '';
 
   // Try to parse JSON response
   try {
@@ -77,7 +77,7 @@ async function generateWithUnifiedAPI(
   return {
     responseText: responseText,
     sources: [
-      { title: "AI Generated Response", description: "Response generated using " + settings.model }
+      { title: "AI Generated Response", description: `Response generated using ${data.model || settings.model} (${data.provider || 'AI'})` }
     ]
   };
 }
@@ -266,7 +266,8 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
     if (analysisResponse.ok) {
         try {
             const data = await analysisResponse.json();
-            const parsed = JSON.parse(data.text || data.response || '{}');
+            const responseText = data.content || data.text || data.response || '{}';
+            const parsed = JSON.parse(responseText);
             if (parsed.viewpoint) {
                 analysis = parsed;
             }
@@ -294,10 +295,11 @@ export const generateAnalysisAndResponses = async (userInput: string, settings: 
             });
 
             const data = await response.json();
-            const parsed = JSON.parse(data.text || data.response || '{}');
+            const responseText = data.content || data.text || data.response || '{}';
+            const parsed = JSON.parse(responseText);
 
             return {
-                responseText: parsed.responseText || data.text || 'No response generated.',
+                responseText: parsed.responseText || responseText || 'No response generated.',
                 sources: parsed.sources || [],
                 personaName: persona.name,
                 denomination: persona.denomination,

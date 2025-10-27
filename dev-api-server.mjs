@@ -218,23 +218,73 @@ const server = createServer(async (req, res) => {
  * Priority: Ollama (kimi-k2:1t-cloud) → Ollama (qwen-coder:480b-cloud) → Gemini → GPT-4o
  */
 async function handleUnifiedChat(requestData) {
-  const { messages, temperature = 0.7, topP = 0.9, maxTokens = 4096 } = requestData;
+  const { model, messages, temperature = 0.7, topP = 0.9, maxTokens = 4096 } = requestData;
   const errors = [];
 
-  // Ollama model priority
-  const ollamaModels = ['kimi-k2:1t-cloud', 'qwen-coder:480b-cloud', 'gpt-oss:120b'];
+  // If specific model requested, try that first
+  if (model) {
+    console.log(`🎯 Specific model requested: ${model}`);
+
+    // Determine provider from model name
+    if (model.startsWith('gpt-')) {
+      // OpenAI model
+      if (process.env.OPENAI_API_KEY) {
+        try {
+          console.log(`🔄 Trying OpenAI with ${model}...`);
+          const result = await callOpenAI(model, messages, temperature, topP, maxTokens);
+          console.log(`✅ Success with OpenAI (${model})`);
+          return result;
+        } catch (error) {
+          console.log(`⚠️ OpenAI (${model}) failed: ${error.message}`);
+          errors.push({ provider: 'openai', model, error: error.message });
+        }
+      }
+    } else if (model.includes(':') || model.includes('cloud') || model.includes('deepseek') || model.includes('qwen') || model.includes('kimi') || model.includes('llama')) {
+      // Ollama model
+      if (process.env.OLLAMA_API_KEY) {
+        try {
+          console.log(`🔄 Trying Ollama with ${model}...`);
+          const result = await callOllama(model, messages, temperature, topP, maxTokens);
+          console.log(`✅ Success with Ollama (${model})`);
+          return result;
+        } catch (error) {
+          console.log(`⚠️ Ollama (${model}) failed: ${error.message}`);
+          errors.push({ provider: 'ollama', model, error: error.message });
+        }
+      }
+    } else if (model.startsWith('gemini-')) {
+      // Gemini model
+      if (process.env.GEMINI_API_KEY) {
+        try {
+          console.log(`🔄 Trying Gemini with ${model}...`);
+          const result = await callGemini(model, messages, temperature, topP, maxTokens);
+          console.log(`✅ Success with Gemini (${model})`);
+          return result;
+        } catch (error) {
+          console.log(`⚠️ Gemini (${model}) failed: ${error.message}`);
+          errors.push({ provider: 'gemini', model, error: error.message });
+        }
+      }
+    }
+  }
+
+  // Fallback to default priority chain
+  console.log('🔄 Falling back to default priority chain...');
+
+  // Ollama model priority (using real available models)
+  const ollamaModels = ['llama3:8b', 'qwen2.5:3b', 'gemma3:4b'];
 
   // Try Ollama with multiple models
   if (process.env.OLLAMA_API_KEY) {
-    for (const model of ollamaModels) {
+    for (const fallbackModel of ollamaModels) {
       try {
-        console.log(`🔄 Trying Ollama with ${model}...`);
-        const result = await callOllama(model, messages, temperature, topP, maxTokens);
-        console.log(`✅ Success with Ollama (${model})`);
+        console.log(`🔄 Trying Ollama with ${fallbackModel}...`);
+        const result = await callOllama(fallbackModel, messages, temperature, topP, maxTokens);
+        console.log(`✅ Success with Ollama (${fallbackModel})`);
         return result;
       } catch (error) {
-        console.log(`⚠️ Ollama (${model}) failed: ${error.message}`);
-        errors.push({ provider: 'ollama', model, error: error.message });
+        console.log(`⚠️ Ollama (${fallbackModel}) failed: ${error.message}`);
+        errors.push({ provider: 'ollama', model: fallbackModel, error: error.message });
       }
     }
   } else {
@@ -423,8 +473,8 @@ server.listen(PORT, () => {
   console.log(`   OLLAMA_API_KEY: ${process.env.OLLAMA_API_KEY ? '✓ Set' : '✗ Not set'}`);
   console.log(`   OLLAMA_API_URL: ${process.env.OLLAMA_API_URL || 'https://api.ollama.cloud'}\n`);
   console.log('Priority Chain:');
-  console.log('   1️⃣ Ollama (kimi-k2:1t-cloud)');
-  console.log('   2️⃣ Ollama (qwen-coder:480b-cloud)');
+  console.log('   1️⃣ Ollama (llama3:8b)');
+  console.log('   2️⃣ Ollama (qwen2.5:3b)');
   console.log('   3️⃣ Google Gemini (gemini-2.0-flash-exp)');
   console.log('   4️⃣ OpenAI (gpt-4o)\n');
 });
