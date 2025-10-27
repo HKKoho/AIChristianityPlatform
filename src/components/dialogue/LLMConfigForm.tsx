@@ -106,14 +106,14 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
             <option value="gpt-4">GPT-4</option>
             <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
           </optgroup>
-          <optgroup label="💻 Ollama Local">
-            <option value="qwen2.5vl:32b">Qwen 2.5 VL 32B (本地)</option>
-            <option value="llama4:scout">Llama 4 Scout (本地)</option>
-            <option value="llama3.3:latest">Llama 3.3 (本地)</option>
-            <option value="mistral-small:24b">Mistral Small 24B (本地)</option>
-            <option value="llava:34b">LLaVA 34B (本地)</option>
-            <option value="deepseek-r1:32b">DeepSeek R1 32B (本地)</option>
-            <option value="llama3.2-vision:latest">Llama 3.2 Vision (本地)</option>
+          <optgroup label="💻 Ollama Local (不適用於Vercel)">
+            <option value="llama3.2-vision:90b">Llama 3.2 Vision 90B 🏆</option>
+            <option value="qwen2.5:72b">Qwen 2.5 72B 🏆</option>
+            <option value="deepseek-r1:70b">DeepSeek R1 70B 🏆</option>
+            <option value="llama3.3:latest">Llama 3.3 70B 🏆</option>
+            <option value="gemma3:27b">Gemma 3 27B</option>
+            <option value="mistral-small3.1:24b">Mistral Small 3.1 24B</option>
+            <option value="llama3.2-vision:latest">Llama 3.2 Vision 11B</option>
           </optgroup>
         </select>
         <p className="text-xs text-gray-400 mt-1">

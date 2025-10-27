@@ -337,14 +337,36 @@ async function handleOllamaChat(requestData) {
 /**
  * Call Ollama API
  */
+// Helper: Check if local Ollama has the model
+async function isLocalOllamaAvailable(model) {
+  try {
+    const response = await fetch('http://localhost:11434/api/tags');
+    if (!response.ok) return false;
+    const data = await response.json();
+    return data.models.some(m => m.name === model || m.model === model);
+  } catch (error) {
+    return false;
+  }
+}
+
 async function callOllama(model, messages, temperature, topP, maxTokens) {
-  const apiUrl = `${process.env.OLLAMA_API_URL || 'https://api.ollama.cloud'}/api/chat`;
+  // Check if model is available locally first
+  const isLocal = await isLocalOllamaAvailable(model);
+
+  const apiUrl = isLocal
+    ? 'http://localhost:11434/api/chat'
+    : `${process.env.OLLAMA_API_URL || 'https://api.ollama.cloud'}/api/chat`;
+
+  const headers = isLocal
+    ? { 'Content-Type': 'application/json' }
+    : {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.OLLAMA_API_KEY}`
+      };
+
   const response = await fetch(apiUrl, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.OLLAMA_API_KEY}`
-    },
+    headers,
     body: JSON.stringify({
       model,
       messages,
@@ -365,7 +387,7 @@ async function callOllama(model, messages, temperature, topP, maxTokens) {
   const data = await response.json();
   return {
     content: data.message.content,
-    provider: 'ollama',
+    provider: isLocal ? 'ollama-local' : 'ollama-cloud',
     model,
     usage: {
       promptTokens: data.prompt_eval_count || 0,
