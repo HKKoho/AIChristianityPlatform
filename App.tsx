@@ -10,7 +10,8 @@ import {
   BibleGame,
   TheologyAssistant,
   BiblicalLanguage,
-  TheologicalJourney
+  TheologicalJourney,
+  TheologicalDialogue
 } from './src/components';
 // Sermon generation services - TO BE IMPLEMENTED
 // import { generatePresentation as generateWithGemini } from './services/geminiService';
@@ -94,7 +95,7 @@ const App: React.FC = () => {
     setCurrentTopic('');
   };
 
-  const handleNavigateFromLanding = (destination: 'sermon' | 'bible-game' | 'theology-search' | 'biblical-language' | 'theological-journey') => {
+  const handleNavigateFromLanding = (destination: 'sermon' | 'bible-game' | 'theology-search' | 'biblical-language' | 'theological-journey' | 'theological-dialogue') => {
     switch (destination) {
       case 'sermon':
         setAppState(AppState.INPUT);
@@ -110,6 +111,9 @@ const App: React.FC = () => {
         break;
       case 'theological-journey':
         setAppState(AppState.THEOLOGICAL_JOURNEY);
+        break;
+      case 'theological-dialogue':
+        setAppState(AppState.THEOLOGICAL_DIALOGUE);
         break;
     }
   };
@@ -160,6 +164,8 @@ const App: React.FC = () => {
         return <BiblicalLanguage onBack={handleBackToLanding} />;
       case AppState.THEOLOGICAL_JOURNEY:
         return <TheologicalJourney onBack={handleBackToLanding} />;
+      case AppState.THEOLOGICAL_DIALOGUE:
+        return <TheologicalDialogue onBack={handleBackToLanding} />;
       case AppState.LOADING:
         return <LoadingScreen message={loadingMessage} />;
       case AppState.RESULT:
@@ -203,7 +209,7 @@ const App: React.FC = () => {
     }
   };
 
-  const showHeader = appState !== AppState.LANDING && appState !== AppState.BIBLE && appState !== AppState.THEOLOGY_SEARCH && appState !== AppState.BIBLICAL_LANGUAGE && appState !== AppState.THEOLOGICAL_JOURNEY;
+  const showHeader = appState !== AppState.LANDING && appState !== AppState.BIBLE && appState !== AppState.THEOLOGY_SEARCH && appState !== AppState.BIBLICAL_LANGUAGE && appState !== AppState.THEOLOGICAL_JOURNEY && appState !== AppState.THEOLOGICAL_DIALOGUE;
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col">

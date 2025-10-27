@@ -20,3 +20,6 @@ export { TheologyAssistant } from './theology/TheologyAssistant';
 
 // Theological Journey
 export { default as TheologicalJourney } from './journey/TheologicalJourney';
+
+// Theological Dialogue
+export { default as TheologicalDialogue } from './dialogue/TheologicalDialogue';

@@ -1,0 +1,5 @@
+{
+  "name": "Bilateral LLM Debate Simulator",
+  "description": "An application that allows users to configure two AI personas and have them engage in a debate on a specified topic, simulating a bilateral conversation powered by Large Language Models.",
+  "requestFramePermissions": []
+}

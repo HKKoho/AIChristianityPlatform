@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface LandingPageProps {
-  onNavigate: (destination: 'sermon' | 'bible-game' | 'theology-search' | 'biblical-language' | 'theological-journey') => void;
+  onNavigate: (destination: 'sermon' | 'bible-game' | 'theology-search' | 'biblical-language' | 'theological-journey' | 'theological-dialogue') => void;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
@@ -9,6 +9,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
     { id: 'bible-game', title: '聖經研讀', description: '互動式聖經遊戲學習', icon: '📖' },
     { id: 'biblical-language', title: '原文研讀', description: '希伯來文與希臘文學習', icon: '✍️' },
     { id: 'theology-search', title: '神學研究', description: 'AI 神學助手與文獻搜索', icon: '🎓' },
+    { id: 'theological-dialogue', title: '神學對話', description: 'AI 神學家辯論與分析', icon: '💬' },
     { id: 'sermon', title: '講道生成', description: '自動生成完整講道稿', icon: '🎤' },
     { id: 'theological-journey', title: '神學家日誌', description: '思想路線圖與對話', icon: '📝' },
   ];
