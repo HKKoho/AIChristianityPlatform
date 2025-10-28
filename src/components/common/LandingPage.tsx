@@ -35,27 +35,27 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-5xl font-bold text-center mb-4">AI 神學平台</h1>
-        <p className="text-xl text-center text-gray-300 mb-16">六大核心功能，全方位神學學習</p>
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold text-center mb-2">AI 神學平台</h1>
+        <p className="text-lg text-center text-gray-300 mb-8">六大核心功能，全方位神學學習</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto mb-8">
           {capabilities.map((cap) => (
             <button
               key={cap.id}
               onClick={() => onNavigate(cap.id as any)}
-              className="bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl p-8 transition-all transform hover:scale-105 hover:shadow-xl"
+              className="bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl p-4 transition-all transform hover:scale-105 hover:shadow-xl"
             >
-              <div className="text-6xl mb-4">{cap.icon}</div>
-              <h3 className="text-2xl font-bold mb-2">{cap.title}</h3>
-              <p className="text-gray-400">{cap.description}</p>
+              <div className="text-4xl mb-2">{cap.icon}</div>
+              <h3 className="text-xl font-bold mb-1">{cap.title}</h3>
+              <p className="text-sm text-gray-400">{cap.description}</p>
             </button>
           ))}
         </div>
 
         {/* Slideshow Section */}
         <div className="max-w-6xl mx-auto">
-          <div className="relative w-full h-96 rounded-xl overflow-hidden shadow-2xl">
+          <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-2xl">
             {images.map((image, index) => (
               <div
                 key={image}
