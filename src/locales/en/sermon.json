@@ -2,43 +2,58 @@
   "title": "Sermon Generator",
   "inputForm": {
     "topic": "Sermon Topic",
-    "topicPlaceholder": "Enter sermon topic...",
-    "keyPoints": "Key Points",
-    "keyPointsPlaceholder": "Enter key points (one per line)...",
-    "sermonBasis": "Sermon Basis",
+    "topicPlaceholder": "e.g., The Power of Faith",
+    "keyPoints": "Key Points (at least one)",
+    "keyPointPlaceholder": "Key Point {{index}}",
+    "sermonBasis": "Theological Basis",
     "biblicalStudy": "Biblical Study",
     "churchHistory": "Church History",
     "systematicTheology": "Systematic Theology",
     "sermonLength": "Sermon Length",
     "minutes": "minutes",
+    "threeMinutes": "3 minutes",
+    "fiveMinutes": "5 minutes",
+    "tenMinutes": "10 minutes",
     "aiEngine": "AI Engine",
+    "llmModel": "LLM Model",
     "generate": "Generate Sermon",
-    "viewSaved": "View Saved Sermons"
+    "viewSaved": "View Saved"
   },
   "result": {
     "title": "Generated Sermon",
     "summary": "Summary",
     "slides": "Slides",
     "script": "Full Script",
-    "save": "Save Sermon",
-    "saved": "Sermon Saved",
+    "talkingPoints": "Talking Points:",
+    "speakerNotes": "Speaker Notes:",
+    "save": "Save",
+    "saved": "Saved",
+    "back": "Back",
     "generateNew": "Generate New"
   },
   "saved": {
     "title": "Saved Sermons",
     "noSaved": "No saved sermons yet",
+    "savedAt": "Saved at:",
     "load": "Load",
     "delete": "Delete",
-    "back": "Back to Generator"
+    "back": "Back",
+    "view": "View"
   },
   "admin": {
-    "title": "Admin Panel",
+    "title": "AI Personality Settings",
     "aiPersona": "AI Persona Configuration",
+    "enableCustomPersonality": "Enable Custom Personality",
+    "ethicalStance": "Ethical Stance",
+    "ethicalPlaceholder": "e.g., Values social justice and mercy",
+    "tonalStyle": "Tonal Style",
+    "tonalPlaceholder": "e.g., Gentle, encouraging",
+    "empathyLevel": "Empathy Level (0-10)",
+    "save": "Save Settings",
+    "back": "Back",
     "ethics": "Ethics",
     "politicalStance": "Political Stance",
     "tone": "Tone",
-    "empathy": "Empathy Level",
-    "save": "Save Configuration",
-    "back": "Back"
+    "empathy": "Empathy Level"
   }
 }

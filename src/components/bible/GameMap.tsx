@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGame } from './hooks/useGame';
 import { locations, quests, levels } from './data/gameData';
 import type { Quest } from '../biblTypes';
@@ -7,6 +8,7 @@ import LevelCompleteModal from './LevelCompleteModal';
 import Icon from './Icon';
 
 const GameMap: React.FC = () => {
+  const { t } = useTranslation(['common', 'bible']);
   const { unlockedLocations, completedQuests } = useGame();
   const [activeQuest, setActiveQuest] = useState<Quest | null>(null);
   const [completedLevelId, setCompletedLevelId] = useState<string | null>(null);
@@ -59,7 +61,7 @@ const GameMap: React.FC = () => {
             onClick={() => handleLocationClick(location.questId)}
             className={`absolute transform -translate-x-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-white/50 group ${statusClasses}`}
             style={{ top: location.position.top, left: location.position.left }}
-            aria-label={`地點：${location.name}`}
+            aria-label={t('bible:location', { name: location.name })}
           >
             {isCompleted ? <Icon name="check" className="w-5 h-5"/> : isUnlocked ? <Icon name="unlock" className="w-5 h-5"/> : <Icon name="lock" className="w-5 h-5"/>}
              <div className="absolute bottom-full mb-2 w-max bg-gray-900 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity pointer-events-none" role="tooltip">

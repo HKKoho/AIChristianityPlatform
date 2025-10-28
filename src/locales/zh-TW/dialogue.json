@@ -1,5 +1,13 @@
 {
   "title": "神學對話",
+  "heading": {
+    "theologicalDialogueSimulator": "神學<span class=\"text-sky-400\">對話</span>模擬器",
+    "debateSettings": "辯論設定",
+    "mbtiPersonalityTypes": "MBTI 性格類型"
+  },
+  "subtitle": {
+    "dialogueDescription": "透過結構化對話或多元觀點分析，與 AI 神學家進行深度交流"
+  },
   "selectPersona": "選擇神學家",
   "startDialogue": "開始對話",
   "endDialogue": "結束對話",
@@ -8,5 +16,43 @@
   "analysis": "分析",
   "debate": "辯論",
   "personas": "神學家角色",
-  "createPersona": "創建新角色"
+  "createPersona": "創建新角色",
+  "tab": {
+    "debateMode": "辯論模式",
+    "analysisMode": "分析模式"
+  },
+  "label": {
+    "enableAudio": "啟用語音",
+    "debateTopic": "辯論主題",
+    "languageModel": "語言模型",
+    "enterTheologyTopic": "輸入神學主題進行分析",
+    "numberOfTheologians": "神學家數量",
+    "userParticipatesInDebate": "使用者參與辯論"
+  },
+  "ariaLabel": {
+    "enableTextToSpeech": "啟用文字轉語音",
+    "playAudio": "播放語音",
+    "copyResponse": "複製回應",
+    "sendMessage": "發送訊息"
+  },
+  "placeholder": {
+    "yourTurn": "輪到你回應了...",
+    "defaultAnalysisTopic": "探討東正教神學中的成神論（Theosis）與西方聖潔觀的比較。",
+    "exampleAnalysisTopic": "例如：比較天主教與新教對稱義的觀點"
+  },
+  "button": {
+    "startDebate": "開始辯論",
+    "endDebate": "結束辯論",
+    "analyzeAndDiscuss": "分析並討論",
+    "analyzing": "分析中...",
+    "resetAll": "重置全部",
+    "nextTurn": "下一輪：{{name}}",
+    "toggleMBTIInfo": "什麼是 MBTI？",
+    "hideMBTIInfo": "隱藏 MBTI 資訊"
+  },
+  "message": {
+    "yourTurn": "輪到你了",
+    "thinking": "思考中...",
+    "debateWillShowHere": "辯論將在此顯示。請設定神學家並按「開始辯論」。"
+  }
 }

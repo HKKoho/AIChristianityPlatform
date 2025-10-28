@@ -2,14 +2,61 @@
   "appTitle": "AI 神學平台",
   "appSubtitle": "六大核心功能，全方位神學學習",
   "backToHome": "← 返回首頁",
+  "backToMenu": "← 返回主選單",
+  "back": "返回",
   "loading": "載入中...",
+  "generating": "生成中...",
   "error": "錯誤",
   "save": "保存",
+  "saved": "已保存",
   "cancel": "取消",
   "delete": "刪除",
   "edit": "編輯",
   "retry": "重試",
+  "retryAgain": "再試一次",
   "close": "關閉",
   "submit": "提交",
-  "reset": "重設"
+  "reset": "重設",
+  "send": "發送",
+  "view": "查看",
+  "clear": "清除",
+  "settings": "設定",
+  "next": "下一個",
+  "thinking": "思考中...",
+  "analyzing": "分析中...",
+  "header": {
+    "appTitle": "AI 神學平台",
+    "engine": "引擎:"
+  },
+  "button": {
+    "back": "返回",
+    "backToMenu": "← 返回主選單",
+    "save": "保存",
+    "delete": "刪除",
+    "retry": "重試",
+    "retryAgain": "再試一次",
+    "send": "發送",
+    "clear": "清除",
+    "settings": "設定",
+    "view": "查看",
+    "viewSaved": "查看已保存",
+    "nextWord": "下一個單字",
+    "switchMode": "切換模式"
+  },
+  "error": {
+    "generationFailed": "生成失敗",
+    "generationFailedWithMessage": "生成失敗。{{message}}",
+    "sermonGenerationNotImplemented": "講道生成功能尚未實作，敬請期待",
+    "chatError": "抱歉，發生錯誤。請稍後再試。",
+    "noAIFeedback": "無法從 AI 獲取反饋，請重試。",
+    "microphonePermissionRequired": "需要麥克風權限才能使用。請在瀏覽器設定中啟用麥克風。",
+    "sorry": "抱歉，發生錯誤。"
+  },
+  "message": {
+    "generating": "生成中...",
+    "thinking": "思考中...",
+    "analyzing": "分析中...",
+    "yourTurn": "輪到你了",
+    "noSavedSermons": "尚無已保存的講道"
+  }
 }

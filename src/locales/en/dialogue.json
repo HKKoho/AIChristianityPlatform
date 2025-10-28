@@ -1,5 +1,13 @@
 {
   "title": "Theological Dialogue",
+  "heading": {
+    "theologicalDialogueSimulator": "Theological <span class=\"text-sky-400\">Dialogue</span> Simulator",
+    "debateSettings": "Debate Settings",
+    "mbtiPersonalityTypes": "MBTI Personality Types"
+  },
+  "subtitle": {
+    "dialogueDescription": "Engage in deep dialogue with AI theologians through structured conversation or multi-perspective analysis"
+  },
   "selectPersona": "Select Theologian",
   "startDialogue": "Start Dialogue",
   "endDialogue": "End Dialogue",
@@ -8,5 +16,43 @@
   "analysis": "Analysis",
   "debate": "Debate",
   "personas": "Theologian Personas",
-  "createPersona": "Create New Persona"
+  "createPersona": "Create New Persona",
+  "tab": {
+    "debateMode": "Debate Mode",
+    "analysisMode": "Analysis Mode"
+  },
+  "label": {
+    "enableAudio": "Enable Audio",
+    "debateTopic": "Debate Topic",
+    "languageModel": "Language Model",
+    "enterTheologyTopic": "Enter theological topic for analysis",
+    "numberOfTheologians": "Number of Theologians",
+    "userParticipatesInDebate": "User Participates in Debate"
+  },
+  "ariaLabel": {
+    "enableTextToSpeech": "Enable text-to-speech",
+    "playAudio": "Play audio",
+    "copyResponse": "Copy response",
+    "sendMessage": "Send message"
+  },
+  "placeholder": {
+    "yourTurn": "Your turn to respond...",
+    "defaultAnalysisTopic": "Explore the comparison between Theosis in Eastern Orthodox theology and Western views of sanctification.",
+    "exampleAnalysisTopic": "e.g., Compare Catholic and Protestant views on justification"
+  },
+  "button": {
+    "startDebate": "Start Debate",
+    "endDebate": "End Debate",
+    "analyzeAndDiscuss": "Analyze and Discuss",
+    "analyzing": "Analyzing...",
+    "resetAll": "Reset All",
+    "nextTurn": "Next Turn: {{name}}",
+    "toggleMBTIInfo": "What is MBTI?",
+    "hideMBTIInfo": "Hide MBTI Info"
+  },
+  "message": {
+    "yourTurn": "Your turn",
+    "thinking": "Thinking...",
+    "debateWillShowHere": "The debate will appear here. Please set up theologians and press 'Start Debate'."
+  }
 }

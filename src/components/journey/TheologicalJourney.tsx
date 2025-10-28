@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import Timeline from './Timeline';
 import Editor from './Editor';
 import Dialogue from './Dialogue';
@@ -12,6 +13,7 @@ interface TheologicalJourneyProps {
 }
 
 const TheologicalJourney: React.FC<TheologicalJourneyProps> = ({ onBack }) => {
+  const { t } = useTranslation(['common', 'journey']);
   const [currentStage, setCurrentStage] = useState<JourneyStage>(JourneyStage.InitialConcept);
   const [journalEntries, setJournalEntries] = useState<Record<JourneyStage, string>>({
     [JourneyStage.InitialConcept]: '',
@@ -47,7 +49,7 @@ const TheologicalJourney: React.FC<TheologicalJourneyProps> = ({ onBack }) => {
       setDialogueHistory(prev => [...prev, modelMessage]);
     } catch (error) {
       console.error("Error fetching dialogue response:", error);
-      const errorMessage: ChatMessage = { role: 'model', content: "抱歉，發生錯誤。" };
+      const errorMessage: ChatMessage = { role: 'model', content: t('common:error.sorry') };
       setDialogueHistory(prev => [...prev, errorMessage]);
     } finally {
       setIsDialogueLoading(false);
@@ -100,9 +102,9 @@ const TheologicalJourney: React.FC<TheologicalJourneyProps> = ({ onBack }) => {
           onClick={onBack}
           className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition-colors"
         >
-          ← 返回主選單
+          {t('common:button.backToMenu')}
         </button>
-        <h1 className="text-2xl font-bold text-center flex-1">神學家思想路線圖</h1>
+        <h1 className="text-2xl font-bold text-center flex-1">{t('journey:heading.theologistThoughtMap')}</h1>
         <div className="flex-1 flex justify-end">
           <span className="text-xs text-slate-400">Powered by Gemini AI</span>
         </div>

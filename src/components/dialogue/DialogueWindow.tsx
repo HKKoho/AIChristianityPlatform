@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DialogueTurn, DialoguePersona, DialogueSource } from '../../../types';
 import { DocumentTextIcon } from './icons/DocumentTextIcon';
 import { ClipboardIcon } from './icons/ClipboardIcon';
@@ -22,12 +23,13 @@ const DialogueSourceDisplay: React.FC<{ sources: DialogueSource[] }> = ({ source
     </div>
   );
 
-const DialogueMessage: React.FC<{ 
-  turn: DialogueTurn; 
-  personaColor: string; 
+const DialogueMessage: React.FC<{
+  turn: DialogueTurn;
+  personaColor: string;
   onPlayAudio: (turnId: string) => void;
   isCurrentlyPlaying: boolean;
 }> = ({ turn, personaColor, onPlayAudio, isCurrentlyPlaying }) => {
+  const { t } = useTranslation(['common', 'dialogue']);
   const [isCopied, setIsCopied] = useState(false);
   const isUser = turn.speaker === 'Human';
   const userBgColorClass = 'bg-blue-600';
@@ -65,7 +67,7 @@ const DialogueMessage: React.FC<{
                  <button
                   onClick={handlePlayClick}
                   className="p-1.5 rounded-md bg-black/10 text-white/70 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200 hover:bg-black/30"
-                  aria-label="播放語音"
+                  aria-label={t('dialogue:ariaLabel.playAudio')}
                 >
                   <SpeakerOnIcon className={`h-4 w-4 ${isCurrentlyPlaying ? 'text-sky-400' : ''}`} />
                  </button>
@@ -73,7 +75,7 @@ const DialogueMessage: React.FC<{
               <button
                 onClick={handleCopy}
                 className="p-1.5 rounded-md bg-black/10 text-white/70 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200 hover:bg-black/30"
-                aria-label="複製回應"
+                aria-label={t('dialogue:ariaLabel.copyResponse')}
               >
                 {isCopied ? (
                     <CheckIcon className="h-4 w-4 text-emerald-400" />
@@ -108,6 +110,7 @@ interface DialogueWindowProps {
 }
 
 const UserInputForm: React.FC<{ onUserSubmit: (text: string) => void, isLoading: boolean }> = ({ onUserSubmit, isLoading }) => {
+    const { t } = useTranslation(['common', 'dialogue']);
     const [text, setText] = useState('');
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -142,14 +145,14 @@ const UserInputForm: React.FC<{ onUserSubmit: (text: string) => void, isLoading:
                     onKeyDown={handleKeyDown}
                     rows={2}
                     className="w-full bg-gray-700 text-white rounded-lg border-gray-600 focus:ring-blue-500 focus:border-blue-500 shadow-sm px-4 py-3 pr-12 disabled:opacity-50"
-                    placeholder="輪到你回應了..."
+                    placeholder={t('dialogue:placeholder.yourTurn')}
                     disabled={isLoading}
                 />
                 <button
                     type="submit"
                     disabled={isLoading || !text.trim()}
                     className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    aria-label="發送訊息"
+                    aria-label={t('dialogue:ariaLabel.sendMessage')}
                 >
                     <PaperAirplaneIcon className="h-5 w-5" />
                 </button>
@@ -159,6 +162,7 @@ const UserInputForm: React.FC<{ onUserSubmit: (text: string) => void, isLoading:
 }
 
 export const DialogueWindow: React.FC<DialogueWindowProps> = ({ dialogue, personas, isLoading, onNextAiTurn, onUserSubmit, isStarted, isUserTurn, currentTurnTakerName, onPlayTurnAudio, currentlyPlayingTurnId }) => {
+  const { t } = useTranslation(['common', 'dialogue']);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -176,7 +180,7 @@ export const DialogueWindow: React.FC<DialogueWindowProps> = ({ dialogue, person
       <div id="messages" className="flex flex-col space-y-4 p-3 overflow-y-auto flex-grow">
         {!isStarted && !isLoading && (
           <div className="flex items-center justify-center h-full">
-            <p className="text-gray-400">辯論將在此顯示。請設定神學家並按「開始辯論」。</p>
+            <p className="text-gray-400">{t('dialogue:message.debateWillShowHere')}</p>
           </div>
         )}
         {dialogue.map((turn) => {
@@ -199,7 +203,7 @@ export const DialogueWindow: React.FC<DialogueWindowProps> = ({ dialogue, person
                         className={`px-4 py-2 rounded-lg inline-block text-white animate-pulse`}
                         style={{ backgroundColor: !isUserTurn ? (personas.find(p => p.name === currentTurnTakerName)?.color || '#4B5563') : '#4B5563' }}
                       >
-                        思考中...
+                        {t('dialogue:message.thinking')}
                       </span>
                     </div>
                 </div>
@@ -215,7 +219,7 @@ export const DialogueWindow: React.FC<DialogueWindowProps> = ({ dialogue, person
                 disabled={isLoading}
                 className="w-full max-w-md bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
             >
-                下一輪：{currentTurnTakerName}
+                {t('dialogue:button.nextTurn', { name: currentTurnTakerName })}
             </button>
          </div>
       )}

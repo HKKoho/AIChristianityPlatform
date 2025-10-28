@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGame } from './hooks/useGame';
 import { BibleVersion } from './constants';
 import JournalModal from './JournalModal';
 import Icon from './Icon';
 
 const Header: React.FC = () => {
+  const { t } = useTranslation(['common', 'bible']);
   const { bibleVersion, setBibleVersion } = useGame();
   const [isJournalOpen, setIsJournalOpen] = useState(false);
 
@@ -12,11 +14,11 @@ const Header: React.FC = () => {
     <>
       <header className="p-4 bg-stone-900 bg-opacity-40 text-white shadow-lg flex items-center justify-between flex-wrap gap-4">
         <h1 className="text-2xl md:text-4xl font-extrabold" style={{fontFamily: "'Trajan Pro', serif"}}>
-          聖言之旅
+          {t('bible:heading.bibleJourney')}
         </h1>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <label htmlFor="bible-version" className="text-sm font-semibold">版本：</label>
+            <label htmlFor="bible-version" className="text-sm font-semibold">{t('bible:heading.version')}</label>
             <select
               id="bible-version"
               value={bibleVersion}
@@ -31,10 +33,10 @@ const Header: React.FC = () => {
           <button
             onClick={() => setIsJournalOpen(true)}
             className="flex items-center gap-2 bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 transform hover:scale-105"
-            aria-label="開啟智慧卷軸"
+            aria-label={t('bible:button.openJournal')}
           >
             <Icon name="book-open" className="w-5 h-5" />
-            <span className="hidden sm:inline">日誌</span>
+            <span className="hidden sm:inline">{t('bible:button.journal')}</span>
           </button>
         </div>
       </header>

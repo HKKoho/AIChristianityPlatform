@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DialogueSettings } from '../../../types';
 import { SparklesIcon } from './icons/SparklesIcon';
 import { MBTI_DESCRIPTIONS } from './constants';
@@ -10,6 +11,7 @@ interface LLMConfigFormProps {
 }
 
 export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSettings, disabled }) => {
+  const { t } = useTranslation(['common', 'dialogue']);
   const [showMbtiInfo, setShowMbtiInfo] = useState(false);
 
   const handleTopicChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,19 +36,19 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
       <div className="flex justify-between items-center">
         <h3 className="text-xl font-bold text-white flex items-center">
           <SparklesIcon className="mr-2 h-6 w-6 text-indigo-400" />
-          辯論設定
+          {t('dialogue:heading.debateSettings')}
         </h3>
         <button
             onClick={() => setShowMbtiInfo(!showMbtiInfo)}
             className="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors px-3 py-1 rounded-md hover:bg-gray-700"
         >
-            {showMbtiInfo ? '隱藏 MBTI 資訊' : '什麼是 MBTI？'}
+            {showMbtiInfo ? t('dialogue:button.hideMBTIInfo') : t('dialogue:button.toggleMBTIInfo')}
         </button>
       </div>
       
       {showMbtiInfo && (
         <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-700 max-h-48 overflow-y-auto">
-            <h4 className="text-md font-semibold text-gray-200 mb-2">MBTI 性格類型</h4>
+            <h4 className="text-md font-semibold text-gray-200 mb-2">{t('dialogue:heading.mbtiPersonalityTypes')}</h4>
             <ul className="space-y-2 text-sm">
                 {Object.entries(MBTI_DESCRIPTIONS).map(([type, desc]) => (
                     <li key={type} className="flex flex-col sm:flex-row">
@@ -60,7 +62,7 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
 
       <div>
         <label htmlFor="topic" className="block text-sm font-medium text-gray-300 mb-1">
-          辯論主題
+          {t('dialogue:label.debateTopic')}
         </label>
         <input
           type="text"
@@ -73,7 +75,7 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
       </div>
        <div>
         <label htmlFor="model" className="block text-sm font-medium text-gray-300 mb-1">
-          語言模型
+          {t('dialogue:label.languageModel')}
         </label>
         <select
           id="model"
@@ -136,7 +138,7 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
         <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-            神學家數量
+            {t('dialogue:label.numberOfTheologians')}
             </label>
             <div className="flex items-center space-x-6">
             {[2, 3, 4, 5].map((num) => (
@@ -168,7 +170,7 @@ export const LLMConfigForm: React.FC<LLMConfigFormProps> = ({ settings, setSetti
                 className="h-4 w-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500 disabled:opacity-50 cursor-pointer"
             />
             <label htmlFor="user-participant" className="ml-2 block text-sm text-gray-300">
-                使用者參與辯論
+                {t('dialogue:label.userParticipatesInDebate')}
             </label>
         </div>
       </div>

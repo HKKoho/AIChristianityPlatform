@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import * as d3 from 'd3';
 import { MindMapData, MindMapNode, MindMapLink } from '../types';
 
@@ -7,6 +8,7 @@ interface MindMapProps {
 }
 
 const MindMap: React.FC<MindMapProps> = ({ data }) => {
+  const { t } = useTranslation(['common', 'journey']);
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
@@ -82,10 +84,10 @@ const MindMap: React.FC<MindMapProps> = ({ data }) => {
 
   return (
     <div className="w-full h-full p-4 bg-slate-800/50 border-l border-slate-700">
-        <h3 className="text-xl font-bold text-purple-300 mb-2">思維導圖</h3>
+        <h3 className="text-xl font-bold text-purple-300 mb-2">{t('journey:heading.mindMap')}</h3>
         {data.nodes.length === 0 ? (
             <div className="flex items-center justify-center h-full text-slate-500">
-                <p>從您的文字生成地圖以視覺化概念連結。</p>
+                <p>{t('journey:message.generateMapFromText')}</p>
             </div>
         ) : (
             <svg ref={svgRef} className="w-full h-full"></svg>

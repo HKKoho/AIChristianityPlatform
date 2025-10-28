@@ -1,10 +1,34 @@
 {
   "title": "神學家日誌",
+  "heading": {
+    "theologistThoughtMap": "神學家思想路線圖",
+    "theologicalJournal": "神學日誌",
+    "theologicalJourney": "神學之旅",
+    "mindMap": "思維導圖",
+    "aiDialoguePartner": "AI 對話夥伴"
+  },
   "mindMap": "思維導圖",
   "timeline": "時間軸",
   "dialogue": "對話",
   "newEntry": "新條目",
   "editEntry": "編輯條目",
   "deleteEntry": "刪除條目",
-  "saveEntry": "保存條目"
+  "saveEntry": "保存條目",
+  "label": {
+    "hint": "提示：",
+    "dialogueMode": "對話模式"
+  },
+  "placeholder": {
+    "startRecording": "在此開始您的記錄...",
+    "challengeThought": "挑戰你的想法..."
+  },
+  "button": {
+    "refineText": "潤色文字",
+    "getCitations": "取得引文",
+    "generateMindMap": "生成思維導圖",
+    "send": "傳送"
+  },
+  "message": {
+    "generateMapFromText": "從您的文字生成地圖以視覺化概念連結。"
+  }
 }

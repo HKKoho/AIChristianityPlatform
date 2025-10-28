@@ -2,14 +2,61 @@
   "appTitle": "AI Theology Platform",
   "appSubtitle": "Six Core Capabilities, Comprehensive Theological Learning",
   "backToHome": "← Back to Home",
+  "backToMenu": "← Back to Menu",
+  "back": "Back",
   "loading": "Loading...",
+  "generating": "Generating...",
   "error": "Error",
   "save": "Save",
+  "saved": "Saved",
   "cancel": "Cancel",
   "delete": "Delete",
   "edit": "Edit",
   "retry": "Retry",
+  "retryAgain": "Try Again",
   "close": "Close",
   "submit": "Submit",
-  "reset": "Reset"
+  "reset": "Reset",
+  "send": "Send",
+  "view": "View",
+  "clear": "Clear",
+  "settings": "Settings",
+  "next": "Next",
+  "thinking": "Thinking...",
+  "analyzing": "Analyzing...",
+  "header": {
+    "appTitle": "AI Theology Platform",
+    "engine": "Engine:"
+  },
+  "button": {
+    "back": "Back",
+    "backToMenu": "← Back to Menu",
+    "save": "Save",
+    "delete": "Delete",
+    "retry": "Retry",
+    "retryAgain": "Try Again",
+    "send": "Send",
+    "clear": "Clear",
+    "settings": "Settings",
+    "view": "View",
+    "viewSaved": "View Saved",
+    "nextWord": "Next Word",
+    "switchMode": "Switch Mode"
+  },
+  "error": {
+    "generationFailed": "Generation Failed",
+    "generationFailedWithMessage": "Generation failed. {{message}}",
+    "sermonGenerationNotImplemented": "Sermon generation feature not yet implemented, stay tuned",
+    "chatError": "Sorry, an error occurred. Please try again later.",
+    "noAIFeedback": "Unable to get feedback from AI, please try again.",
+    "microphonePermissionRequired": "Microphone permission is required to use this feature. Please enable microphone in your browser settings.",
+    "sorry": "Sorry, an error occurred."
+  },
+  "message": {
+    "generating": "Generating...",
+    "thinking": "Thinking...",
+    "analyzing": "Analyzing...",
+    "yourTurn": "Your turn",
+    "noSavedSermons": "No saved sermons yet"
+  }
 }

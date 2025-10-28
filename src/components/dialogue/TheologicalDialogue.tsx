@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DialoguePersona, DialogueTurn, DialogueSettings, UserInputAnalysis, TheologianResponse } from '../../../types';
 import { DEFAULT_DIALOGUE_SETTINGS, THEOLOGIAN_PERSONAS } from './constants';
 import { PersonaCreator } from './PersonaCreator';
@@ -15,6 +16,8 @@ interface TheologicalDialogueProps {
 }
 
 const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => {
+  const { t } = useTranslation(['dialogue', 'common']);
+
   // Shared state
   const [mode, setMode] = useState<AppMode>('dialogue');
   const [settings, setSettings] = useState<DialogueSettings>(DEFAULT_DIALOGUE_SETTINGS);
@@ -27,7 +30,7 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
   const [currentTurnIndex, setCurrentTurnIndex] = useState<number>(0);
 
   // Analysis Mode State
-  const [analysisInput, setAnalysisInput] = useState<string>('探討東正教神學中的成神論（Theosis）與西方聖潔觀的比較。');
+  const [analysisInput, setAnalysisInput] = useState<string>(t('dialogue:placeholder.defaultAnalysisTopic'));
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [analysisResult, setAnalysisResult] = useState<UserInputAnalysis | null>(null);
   const [theologianResponses, setTheologianResponses] = useState<TheologianResponse[]>([]);
@@ -42,7 +45,7 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
   // Derived state for dialogue mode
   const totalParticipants = settings.userIsParticipant ? personas.length + 1 : personas.length;
   const isUserTurn = settings.userIsParticipant && currentTurnIndex === personas.length;
-  const currentTurnTakerName = isUserTurn ? "輪到你了" : personas[currentTurnIndex]?.name || '...';
+  const currentTurnTakerName = isUserTurn ? t('dialogue:message.yourTurn') : personas[currentTurnIndex]?.name || '...';
 
   // --- Audio Logic ---
   useEffect(() => {
@@ -217,7 +220,7 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
     setDialogue([]);
     setSettings(DEFAULT_DIALOGUE_SETTINGS);
     setPersonas(THEOLOGIAN_PERSONAS.slice(0, DEFAULT_DIALOGUE_SETTINGS.numDebaters));
-    setAnalysisInput('Examine the concept of Theosis (deification) in Eastern Orthodox theology compared to the Western view of sanctification.');
+    setAnalysisInput(t('dialogue:placeholder.defaultAnalysisTopic'));
     setAnalysisResult(null);
     setTheologianResponses([]);
     setIsAnalyzing(false);
@@ -230,11 +233,11 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
              <div className="flex flex-col sm:flex-row gap-4 mt-4">
                 {!isStarted ? (
                     <button onClick={startDialogue} className="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md flex-1">
-                        開始辯論
+                        {t('dialogue:button.startDebate')}
                     </button>
                 ) : (
                     <button onClick={endDialogue} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md flex-1">
-                        結束辯論
+                        {t('dialogue:button.endDebate')}
                     </button>
                 )}
             </div>
@@ -274,7 +277,7 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
         <div className="w-full lg:w-2/3 mx-auto">
              <div className="bg-gray-800 p-4 rounded-lg shadow-lg border border-gray-700 space-y-3">
                 <label htmlFor="analysis-input" className="block text-sm font-medium text-gray-300">
-                    輸入神學主題進行分析
+                    {t('dialogue:label.enterTheologyTopic')}
                 </label>
                 <textarea
                     id="analysis-input"
@@ -283,10 +286,10 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
                     rows={4}
                     disabled={isAnalyzing}
                     className="w-full bg-gray-700 text-white rounded-md border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm px-3 py-2 disabled:opacity-50"
-                    placeholder="例如：比較天主教與新教對稱義的觀點"
+                    placeholder={t('dialogue:placeholder.exampleAnalysisTopic')}
                 />
                  <button onClick={handleAnalysisSubmit} disabled={isAnalyzing} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
-                    {isAnalyzing ? '分析中...' : '分析並討論'}
+                    {isAnalyzing ? t('dialogue:button.analyzing') : t('dialogue:button.analyzeAndDiscuss')}
                 </button>
              </div>
         </div>
@@ -303,40 +306,41 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
           onClick={onBack}
           className="absolute top-4 left-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition-colors z-50"
         >
-          ← 返回主選單
+          {t('common:button.back')}
         </button>
 
         <header className="text-center mb-8 mt-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-            神學<span className="text-sky-400">對話</span>模擬器
-          </h1>
+          <h1
+            className="text-4xl md:text-5xl font-extrabold tracking-tight"
+            dangerouslySetInnerHTML={{ __html: t('dialogue:heading.theologicalDialogueSimulator') }}
+          />
           <p className="text-gray-400 mt-2 text-lg">
-              透過結構化對話或多元觀點分析，與 AI 神學家進行深度交流
+              {t('dialogue:subtitle.dialogueDescription')}
           </p>
         </header>
 
         <div className="flex justify-center items-center gap-4 mb-8">
             <div className="bg-gray-800 p-1 rounded-lg flex gap-1 border border-gray-700">
                 <button onClick={() => setMode('dialogue')} className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${mode === 'dialogue' ? 'bg-sky-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}>
-                    辯論模式
+                    {t('dialogue:tab.debateMode')}
                 </button>
                 <button onClick={() => setMode('analysis')} className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${mode === 'analysis' ? 'bg-indigo-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}>
-                    分析模式
+                    {t('dialogue:tab.analysisMode')}
                 </button>
             </div>
             {mode === 'dialogue' && (
               <div className="flex items-center space-x-2 bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5">
                   <label htmlFor="tts-toggle" className="text-sm font-medium text-gray-300">
-                      啟用語音
+                      {t('dialogue:label.enableAudio')}
                   </label>
                   <button
                       id="tts-toggle"
                       onClick={() => setIsTtsEnabled(!isTtsEnabled)}
                       className="relative inline-flex items-center h-6 rounded-full w-11 transition-colors"
                       style={{ backgroundColor: isTtsEnabled ? '#0ea5e9' : '#4b5563' }}
-                      aria-label="啟用文字轉語音"
+                      aria-label={t('dialogue:ariaLabel.enableTextToSpeech')}
                   >
-                      <span className="sr-only">啟用語音</span>
+                      <span className="sr-only">{t('dialogue:label.enableAudio')}</span>
                       <span
                           className="inline-block w-4 h-4 transform bg-white rounded-full transition-transform"
                           style={{ transform: isTtsEnabled ? 'translateX(22px)' : 'translateX(2px)' }}
@@ -345,7 +349,7 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
               </div>
             )}
              <button onClick={resetAll} disabled={isLoading || isAnalyzing} className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
-                重置全部
+                {t('dialogue:button.resetAll')}
               </button>
         </div>
 

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { ChatMessage, TheologicalPerspective } from '../types';
 import { PERSPECTIVES } from './constants';
@@ -13,6 +14,7 @@ interface DialogueProps {
 }
 
 const Dialogue: React.FC<DialogueProps> = ({ history, perspective, onPerspectiveChange, onSubmit, isLoading }) => {
+  const { t } = useTranslation(['common', 'journey']);
   const [input, setInput] = useState('');
   const chatEndRef = useRef<HTMLDivElement>(null);
 
@@ -30,10 +32,10 @@ const Dialogue: React.FC<DialogueProps> = ({ history, perspective, onPerspective
 
   return (
     <div className="p-4 h-full flex flex-col bg-slate-800/50 border-l border-slate-700">
-      <h3 className="text-xl font-bold text-amber-300 mb-2">AI 對話夥伴</h3>
+      <h3 className="text-xl font-bold text-amber-300 mb-2">{t('journey:heading.aiDialoguePartner')}</h3>
       <div className="mb-4">
         <label htmlFor="perspective" className="block text-sm font-medium text-slate-400 mb-1">
-          對話模式
+          {t('journey:label.dialogueMode')}
         </label>
         <select
           id="perspective"
@@ -74,12 +76,12 @@ const Dialogue: React.FC<DialogueProps> = ({ history, perspective, onPerspective
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="挑戰你的想法..."
+          placeholder={t('journey:placeholder.challengeThought')}
           className="flex-grow p-2 bg-slate-700 border border-slate-600 rounded-md focus:ring-2 focus:ring-amber-500 focus:outline-none"
           disabled={isLoading}
         />
         <button type="submit" disabled={isLoading || !input.trim()} className="px-4 py-2 bg-amber-600 hover:bg-amber-700 disabled:bg-amber-800 disabled:cursor-not-allowed text-white font-semibold rounded-md transition-colors duration-200">
-          傳送
+          {t('journey:button.send')}
         </button>
       </form>
     </div>

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './LanguageSelector';
 import { AlphabetLearning } from './AlphabetLearning';
 import { WordCard } from './WordCard';
@@ -32,6 +33,7 @@ interface BiblicalLanguageProps {
 }
 
 const BiblicalLanguage: React.FC<BiblicalLanguageProps> = ({ onBack }) => {
+  const { t } = useTranslation(['common', 'language']);
   const [learningMode, setLearningMode] = useState<LearningMode | null>(null);
   const [gameState, setGameState] = useState<GameState>('selecting');
   const [language, setLanguage] = useState<Language | null>(null);
@@ -117,7 +119,7 @@ const BiblicalLanguage: React.FC<BiblicalLanguageProps> = ({ onBack }) => {
               setFeedback(result);
             } catch (apiError) {
               console.error(apiError);
-              setError('無法從 AI 獲取反饋，請重試。');
+              setError(t('common:error.noAIFeedback'));
               setGameState('error');
             } finally {
                setGameState('feedback');
@@ -128,10 +130,10 @@ const BiblicalLanguage: React.FC<BiblicalLanguageProps> = ({ onBack }) => {
         recorder.start();
     } catch (err) {
         console.error('Error accessing microphone:', err);
-        setError('需要麥克風權限才能使用。請在瀏覽器設定中啟用麥克風。');
+        setError(t('common:error.microphonePermissionRequired'));
         setGameState('error');
     }
-  }, [currentWord, language]);
+  }, [currentWord, language, t]);
 
   const handleRecordClick = () => {
     if (gameState === 'recording') {
@@ -156,7 +158,7 @@ const BiblicalLanguage: React.FC<BiblicalLanguageProps> = ({ onBack }) => {
             onClick={onBack}
             className="absolute top-4 left-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition-colors z-50"
           >
-            ← 返回主選單
+            {t('common:button.backToMenu')}
           </button>
 
           <div className="absolute top-4 right-4 text-xs text-stone-400 flex items-center gap-2">
@@ -187,7 +189,7 @@ const BiblicalLanguage: React.FC<BiblicalLanguageProps> = ({ onBack }) => {
           {learningMode === 'word-practice' && gameState !== 'selecting' && (
             <>
               <button onClick={handleBackToModeSelection} className="absolute top-20 left-4 text-sm text-stone-400 hover:text-sky-400 transition-colors">
-                  &larr; 切換模式
+                  &larr; {t('common:button.switchMode')}
               </button>
 
               {language && currentWord && (
@@ -197,9 +199,9 @@ const BiblicalLanguage: React.FC<BiblicalLanguageProps> = ({ onBack }) => {
                   {error && (
                     <div className="w-full max-w-2xl mt-8 bg-red-900/50 border border-red-700 rounded-xl p-6 text-center animate-fade-in">
                       <p className="text-red-200">{error}</p>
-                      { gameState === 'error' && error.includes('麥克風') && (
+                      { gameState === 'error' && error.includes(t('common:error.microphonePermissionRequired').substring(0, 10)) && (
                            <button onClick={handleMicPermission} className="mt-4 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors">
-                              重試
+                              {t('common:button.retry')}
                           </button>
                       )}
                     </div>
@@ -211,7 +213,7 @@ const BiblicalLanguage: React.FC<BiblicalLanguageProps> = ({ onBack }) => {
                     <RecordButton gameState={gameState} onClick={handleRecordClick} />
                     {gameState === 'feedback' && (
                         <button onClick={handleNextWord} className="px-8 py-3 bg-green-600 text-white rounded-full font-bold shadow-md hover:bg-green-700 transition-all transform hover:scale-105 animate-fade-in">
-                            下一個單字 &rarr;
+                            {t('common:button.nextWord')}
                         </button>
                     )}
                   </div>

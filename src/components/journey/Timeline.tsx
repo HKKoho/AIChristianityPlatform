@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { JourneyStage, Stage } from '../types';
 
 interface TimelineProps {
@@ -8,9 +9,11 @@ interface TimelineProps {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ stages, currentStage, onSelectStage }) => {
+  const { t } = useTranslation(['common', 'journey']);
+
   return (
     <div className="p-6 h-full border-r border-slate-700">
-      <h2 className="text-xl font-bold text-sky-300 mb-6">神學之旅</h2>
+      <h2 className="text-xl font-bold text-sky-300 mb-6">{t('journey:heading.theologicalJourney')}</h2>
       <nav>
         <ol className="relative border-l border-slate-600">
           {stages.map((stage, index) => (

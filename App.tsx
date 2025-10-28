@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Header,
   InputForm,
@@ -20,6 +21,7 @@ import type { GeneratedPresentation, SavedPresentation, SystemPromptConfig, Serm
 import { AppState, AiEngine, DEFAULT_SYSTEM_PROMPT_CONFIG } from './types';
 
 const App: React.FC = () => {
+  const { t } = useTranslation(['common']);
   const [appState, setAppState] = useState<AppState>(AppState.LANDING);
   // Default to Local LLM (multi-provider system with automatic fallback)
   const [aiEngine, setAiEngine] = useState<AiEngine>(AiEngine.LOCAL_LLM);
@@ -60,7 +62,7 @@ const App: React.FC = () => {
     try {
       // Sermon generation - TO BE IMPLEMENTED
       // For now, show a placeholder message
-      throw new Error('講道生成功能尚未實作，敬請期待');
+      throw new Error(t('common:error.sermonGenerationNotImplemented'));
 
       // TODO: Implement sermon generation services
       // let presentation: GeneratedPresentation;
@@ -76,7 +78,7 @@ const App: React.FC = () => {
     } catch (err) {
       console.error('Generation failed:', err);
       const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred.';
-      setError(`生成失敗。 ${errorMessage}`);
+      setError(t('common:error.generationFailedWithMessage', { message: errorMessage }));
       setAppState(AppState.ERROR);
     }
   }, [aiEngine]);
@@ -173,13 +175,13 @@ const App: React.FC = () => {
       case AppState.ERROR:
         return (
           <div className="text-center p-8">
-            <h2 className="text-2xl font-bold text-red-500 mb-4">生成失敗</h2>
+            <h2 className="text-2xl font-bold text-red-500 mb-4">{t('common:error.generationFailed')}</h2>
             <p className="text-gray-300 mb-6">{error}</p>
             <button
               onClick={handleReset}
               className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-md font-semibold transition-colors"
             >
-              再試一次
+              {t('common:button.retryAgain')}
             </button>
           </div>
         );

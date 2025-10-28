@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Chat } from '../../../services/multiProviderChatService';
 import { TheologyAssistantMode, OLLAMA_MODELS } from '../../../types';
 
@@ -7,6 +8,7 @@ interface TheologyAssistantProps {
 }
 
 export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) => {
+  const { t, i18n } = useTranslation(['common', 'theology']);
   const [mode, setMode] = useState<TheologyAssistantMode>(TheologyAssistantMode.CHAT);
   const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant'; content: string }>>([]);
   const [input, setInput] = useState('');
@@ -17,8 +19,13 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
 
   const initializeChat = () => {
     if (!chatRef.current) {
+      // Use language-aware system prompt
+      const systemPrompt = i18n.language === 'en'
+        ? 'You are a professional theology assistant, proficient in Biblical studies, church history, and systematic theology. Please answer questions and provide accurate Biblical citations.'
+        : '你是一位專業的神學助手，精通聖經研究、教會歷史和系統神學。請用繁體中文回答問題，並提供準確的聖經引用。';
+
       chatRef.current = new Chat(
-        '你是一位專業的神學助手，精通聖經研究、教會歷史和系統神學。請用繁體中文回答問題，並提供準確的聖經引用。',
+        systemPrompt,
         { temperature, topP: 0.9 }
       );
     }
@@ -40,7 +47,7 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
       console.error('Error:', error);
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: '抱歉，發生錯誤。請稍後再試。'
+        content: t('common:error.chatError')
       }]);
     } finally {
       setIsLoading(false);
@@ -63,9 +70,9 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
               onClick={onBack}
               className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-md transition-colors"
             >
-              ← 返回
+              {t('common:button.back')}
             </button>
-            <h1 className="text-2xl font-bold">神學研究助手</h1>
+            <h1 className="text-2xl font-bold">{t('theology:heading.theologyAssistant')}</h1>
           </div>
 
           <div className="flex gap-2">
@@ -73,19 +80,19 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
               onClick={() => setMode(TheologyAssistantMode.CHAT)}
               className={`px-4 py-2 rounded-md ${mode === TheologyAssistantMode.CHAT ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'}`}
             >
-              對話
+              {t('theology:tab.chat')}
             </button>
             <button
               onClick={() => setMode(TheologyAssistantMode.CHURCH_HISTORY)}
               className={`px-4 py-2 rounded-md ${mode === TheologyAssistantMode.CHURCH_HISTORY ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'}`}
             >
-              教會歷史
+              {t('theology:tab.churchHistory')}
             </button>
             <button
               onClick={() => setMode(TheologyAssistantMode.SYSTEMATIC_THEOLOGY)}
               className={`px-4 py-2 rounded-md ${mode === TheologyAssistantMode.SYSTEMATIC_THEOLOGY ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'}`}
             >
-              系統神學
+              {t('theology:tab.systematicTheology')}
             </button>
           </div>
         </div>
@@ -99,11 +106,11 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
             {messages.length === 0 && (
               <div className="text-center text-gray-400 py-12">
                 <h3 className="text-xl mb-4">
-                  {mode === TheologyAssistantMode.CHURCH_HISTORY && '探索教會歷史'}
-                  {mode === TheologyAssistantMode.SYSTEMATIC_THEOLOGY && '學習系統神學'}
-                  {mode === TheologyAssistantMode.CHAT && '開始對話'}
+                  {mode === TheologyAssistantMode.CHURCH_HISTORY && t('theology:placeholder.exploreChurchHistory')}
+                  {mode === TheologyAssistantMode.SYSTEMATIC_THEOLOGY && t('theology:placeholder.learnSystematicTheology')}
+                  {mode === TheologyAssistantMode.CHAT && t('theology:placeholder.startChat')}
                 </h3>
-                <p className="text-sm">請輸入您的問題...</p>
+                <p className="text-sm">{t('theology:placeholder.enterQuestion')}</p>
               </div>
             )}
 
@@ -145,7 +152,7 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                placeholder="輸入您的問題..."
+                placeholder={t('theology:placeholder.enterQuestion')}
                 className="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 disabled={isLoading}
               />
@@ -154,13 +161,13 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
                 disabled={isLoading || !input.trim()}
                 className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-md transition-colors"
               >
-                發送
+                {t('common:send')}
               </button>
               <button
                 onClick={handleClearChat}
                 className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-md transition-colors"
               >
-                清除
+                {t('common:clear')}
               </button>
             </div>
           </div>
@@ -168,10 +175,10 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
 
         {/* Settings Sidebar */}
         <div className="w-64 bg-gray-800 rounded-lg p-4 space-y-4">
-          <h3 className="font-bold text-lg">設定</h3>
+          <h3 className="font-bold text-lg">{t('theology:heading.settings')}</h3>
 
           <div>
-            <label className="block text-sm mb-2">模型</label>
+            <label className="block text-sm mb-2">{t('theology:label.model')}</label>
             <select
               value={selectedModel}
               onChange={(e) => setSelectedModel(e.target.value)}
@@ -199,37 +206,37 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
           </div>
 
           <div className="pt-4 border-t border-gray-700">
-            <h4 className="font-semibold mb-2">快速問題</h4>
+            <h4 className="font-semibold mb-2">{t('theology:heading.quickQuestions')}</h4>
             <div className="space-y-2">
               {mode === TheologyAssistantMode.CHURCH_HISTORY && (
                 <>
                   <button
-                    onClick={() => setInput('介紹宗教改革的起源')}
+                    onClick={() => setInput(t('theology:quickQuestion.reformationOrigin'))}
                     className="w-full text-left px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm"
                   >
-                    宗教改革起源
+                    {t('theology:quickQuestion.reformationOriginLabel')}
                   </button>
                   <button
-                    onClick={() => setInput('說明早期教會的發展')}
+                    onClick={() => setInput(t('theology:quickQuestion.earlyChurchDevelopment'))}
                     className="w-full text-left px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm"
                   >
-                    早期教會發展
+                    {t('theology:quickQuestion.earlyChurchDevelopmentLabel')}
                   </button>
                 </>
               )}
               {mode === TheologyAssistantMode.SYSTEMATIC_THEOLOGY && (
                 <>
                   <button
-                    onClick={() => setInput('解釋三位一體的教義')}
+                    onClick={() => setInput(t('theology:quickQuestion.trinityExplanation'))}
                     className="w-full text-left px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm"
                   >
-                    三位一體
+                    {t('theology:quickQuestion.trinityLabel')}
                   </button>
                   <button
-                    onClick={() => setInput('什麼是預定論？')}
+                    onClick={() => setInput(t('theology:quickQuestion.predestination'))}
                     className="w-full text-left px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm"
                   >
-                    預定論
+                    {t('theology:quickQuestion.predestinationLabel')}
                   </button>
                 </>
               )}

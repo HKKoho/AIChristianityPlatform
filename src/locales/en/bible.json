@@ -1,5 +1,13 @@
 {
   "title": "Interactive Bible Study Game",
+  "heading": {
+    "bibleJourney": "Biblical Journey",
+    "version": "Version:"
+  },
+  "button": {
+    "journal": "Journal",
+    "openJournal": "Open Wisdom Scroll"
+  },
   "level": "Level",
   "quest": "Quest",
   "journal": "Journal",
@@ -7,5 +15,6 @@
   "complete": "Complete",
   "continue": "Continue",
   "start": "Start",
-  "back": "Back"
+  "back": "Back",
+  "location": "Location: {{name}}"
 }

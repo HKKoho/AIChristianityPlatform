@@ -1,10 +1,42 @@
 {
   "title": "Theological Research Assistant",
+  "heading": {
+    "theologyAssistant": "Theology Research Assistant",
+    "settings": "Settings",
+    "quickQuestions": "Quick Questions"
+  },
   "search": "Search",
   "searchPlaceholder": "Enter your theological question...",
   "results": "Results",
   "noResults": "No results found",
   "churchHistory": "Church History",
   "systematicTheology": "Systematic Theology",
-  "biblicalStudy": "Biblical Study"
+  "biblicalStudy": "Biblical Study",
+  "tab": {
+    "chat": "Chat",
+    "churchHistory": "Church History",
+    "systematicTheology": "Systematic Theology"
+  },
+  "placeholder": {
+    "exploreChurchHistory": "Explore Church History",
+    "learnSystematicTheology": "Learn Systematic Theology",
+    "startChat": "Start Chat",
+    "enterQuestion": "Enter your question..."
+  },
+  "systemPrompt": {
+    "theologistPrompt": "You are a professional theology assistant, proficient in Biblical studies, church history, and systematic theology. Please answer questions in Traditional Chinese and provide accurate Biblical citations."
+  },
+  "label": {
+    "model": "Model"
+  },
+  "quickQuestion": {
+    "reformationOrigin": "Introduce the origins of the Reformation",
+    "reformationOriginLabel": "Reformation Origins",
+    "earlyChurchDevelopment": "Explain the development of the early church",
+    "earlyChurchDevelopmentLabel": "Early Church Development",
+    "trinityExplanation": "Explain the doctrine of the Trinity",
+    "trinityLabel": "Trinity",
+    "predestination": "What is predestination?",
+    "predestinationLabel": "Predestination"
+  }
 }

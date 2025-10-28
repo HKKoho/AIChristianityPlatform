@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { SystemPromptConfig } from '../../../types';
 
 interface AdminPanelProps {
@@ -8,6 +9,7 @@ interface AdminPanelProps {
 }
 
 export const AdminPanel: React.FC<AdminPanelProps> = ({ config, onSave, onBack }) => {
+  const { t } = useTranslation('sermon');
   const [localConfig, setLocalConfig] = useState(config);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -18,18 +20,18 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ config, onSave, onBack }
   return (
     <div className="w-full max-w-2xl">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-bold">AI 人格設定</h2>
+        <h2 className="text-3xl font-bold">{t('admin.title')}</h2>
         <button
           onClick={onBack}
           className="px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-md"
         >
-          返回
+          {t('admin.back')}
         </button>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2">啟用自訂人格</label>
+          <label className="block text-sm font-medium mb-2">{t('admin.enableCustomPersonality')}</label>
           <input
             type="checkbox"
             checked={localConfig.enabled}
@@ -41,28 +43,28 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ config, onSave, onBack }
         {localConfig.enabled && (
           <>
             <div>
-              <label className="block text-sm font-medium mb-2">倫理立場</label>
+              <label className="block text-sm font-medium mb-2">{t('admin.ethicalStance')}</label>
               <textarea
                 value={localConfig.ethics}
                 onChange={(e) => setLocalConfig({ ...localConfig, ethics: e.target.value })}
                 className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md h-24"
-                placeholder="例如：重視社會公義與憐憫"
+                placeholder={t('admin.ethicalPlaceholder')}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">語氣風格</label>
+              <label className="block text-sm font-medium mb-2">{t('admin.tonalStyle')}</label>
               <input
                 type="text"
                 value={localConfig.tone}
                 onChange={(e) => setLocalConfig({ ...localConfig, tone: e.target.value })}
                 className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md"
-                placeholder="例如：溫和、鼓勵性"
+                placeholder={t('admin.tonalPlaceholder')}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">同理心程度 (0-10)</label>
+              <label className="block text-sm font-medium mb-2">{t('admin.empathyLevel')}</label>
               <input
                 type="range"
                 min="0"
@@ -80,7 +82,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ config, onSave, onBack }
           type="submit"
           className="w-full py-3 px-6 bg-indigo-600 hover:bg-indigo-700 rounded-md font-semibold"
         >
-          保存設定
+          {t('admin.save')}
         </button>
       </form>
     </div>

@@ -1,10 +1,42 @@
 {
   "title": "神學研究助手",
+  "heading": {
+    "theologyAssistant": "神學研究助手",
+    "settings": "設定",
+    "quickQuestions": "快速問題"
+  },
   "search": "搜索",
   "searchPlaceholder": "請輸入您的神學問題...",
   "results": "結果",
   "noResults": "沒有找到結果",
   "churchHistory": "教會歷史",
   "systematicTheology": "系統神學",
-  "biblicalStudy": "聖經研究"
+  "biblicalStudy": "聖經研究",
+  "tab": {
+    "chat": "對話",
+    "churchHistory": "教會歷史",
+    "systematicTheology": "系統神學"
+  },
+  "placeholder": {
+    "exploreChurchHistory": "探索教會歷史",
+    "learnSystematicTheology": "學習系統神學",
+    "startChat": "開始對話",
+    "enterQuestion": "請輸入您的問題..."
+  },
+  "systemPrompt": {
+    "theologistPrompt": "你是一位專業的神學助手，精通聖經研究、教會歷史和系統神學。請用繁體中文回答問題，並提供準確的聖經引用。"
+  },
+  "label": {
+    "model": "模型"
+  },
+  "quickQuestion": {
+    "reformationOrigin": "介紹宗教改革的起源",
+    "reformationOriginLabel": "宗教改革起源",
+    "earlyChurchDevelopment": "說明早期教會的發展",
+    "earlyChurchDevelopmentLabel": "早期教會發展",
+    "trinityExplanation": "解釋三位一體的教義",
+    "trinityLabel": "三位一體",
+    "predestination": "什麼是預定論？",
+    "predestinationLabel": "預定論"
+  }
 }
