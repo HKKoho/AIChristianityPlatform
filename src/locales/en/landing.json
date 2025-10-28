@@ -1,0 +1,34 @@
+{
+  "capabilities": {
+    "bibleGame": {
+      "title": "Bible Study",
+      "description": "Interactive Biblical Learning Game",
+      "icon": "📖"
+    },
+    "biblicalLanguage": {
+      "title": "Original Text Study",
+      "description": "Hebrew and Greek Language Learning",
+      "icon": "✍️"
+    },
+    "theologySearch": {
+      "title": "Theological Research",
+      "description": "AI Theology Assistant & Literature Search",
+      "icon": "🎓"
+    },
+    "theologicalDialogue": {
+      "title": "Theological Dialogue",
+      "description": "AI Theologian Debate & Analysis",
+      "icon": "💬"
+    },
+    "sermon": {
+      "title": "Sermon Generation",
+      "description": "Automatically Generate Complete Sermons",
+      "icon": "🎤"
+    },
+    "theologicalJourney": {
+      "title": "Theologian Journal",
+      "description": "Thought Mapping & Dialogue",
+      "icon": "📝"
+    }
+  }
+}

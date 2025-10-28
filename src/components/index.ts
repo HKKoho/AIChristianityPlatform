@@ -2,6 +2,7 @@
 export { Header } from './common/Header';
 export { LoadingScreen } from './common/LoadingScreen';
 export { LandingPage } from './common/LandingPage';
+export { LanguageSwitcher } from './common/LanguageSwitcher';
 
 // Sermon Generator components
 export { InputForm } from './sermon/InputForm';

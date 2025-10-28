@@ -1,17 +1,51 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface LandingPageProps {
   onNavigate: (destination: 'sermon' | 'bible-game' | 'theology-search' | 'biblical-language' | 'theological-journey' | 'theological-dialogue') => void;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
+  const { t } = useTranslation(['common', 'landing']);
+
   const capabilities = [
-    { id: 'bible-game', title: '聖經研讀', description: '互動式聖經遊戲學習', icon: '📖' },
-    { id: 'biblical-language', title: '原文研讀', description: '希伯來文與希臘文學習', icon: '✍️' },
-    { id: 'theology-search', title: '神學研究', description: 'AI 神學助手與文獻搜索', icon: '🎓' },
-    { id: 'theological-dialogue', title: '神學對話', description: 'AI 神學家辯論與分析', icon: '💬' },
-    { id: 'sermon', title: '講道生成', description: '自動生成完整講道稿', icon: '🎤' },
-    { id: 'theological-journey', title: '神學家日誌', description: '思想路線圖與對話', icon: '📝' },
+    {
+      id: 'bible-game',
+      title: t('landing:capabilities.bibleGame.title'),
+      description: t('landing:capabilities.bibleGame.description'),
+      icon: t('landing:capabilities.bibleGame.icon')
+    },
+    {
+      id: 'biblical-language',
+      title: t('landing:capabilities.biblicalLanguage.title'),
+      description: t('landing:capabilities.biblicalLanguage.description'),
+      icon: t('landing:capabilities.biblicalLanguage.icon')
+    },
+    {
+      id: 'theology-search',
+      title: t('landing:capabilities.theologySearch.title'),
+      description: t('landing:capabilities.theologySearch.description'),
+      icon: t('landing:capabilities.theologySearch.icon')
+    },
+    {
+      id: 'theological-dialogue',
+      title: t('landing:capabilities.theologicalDialogue.title'),
+      description: t('landing:capabilities.theologicalDialogue.description'),
+      icon: t('landing:capabilities.theologicalDialogue.icon')
+    },
+    {
+      id: 'sermon',
+      title: t('landing:capabilities.sermon.title'),
+      description: t('landing:capabilities.sermon.description'),
+      icon: t('landing:capabilities.sermon.icon')
+    },
+    {
+      id: 'theological-journey',
+      title: t('landing:capabilities.theologicalJourney.title'),
+      description: t('landing:capabilities.theologicalJourney.description'),
+      icon: t('landing:capabilities.theologicalJourney.icon')
+    },
   ];
 
   const images = [
@@ -36,8 +70,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-center mb-2">AI 神學平台</h1>
-        <p className="text-lg text-center text-gray-300 mb-8">六大核心功能，全方位神學學習</p>
+        {/* Language Switcher */}
+        <div className="flex justify-end mb-4">
+          <LanguageSwitcher />
+        </div>
+
+        <h1 className="text-4xl font-bold text-center mb-2">{t('common:appTitle')}</h1>
+        <p className="text-lg text-center text-gray-300 mb-8">{t('common:appSubtitle')}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto mb-8">
           {capabilities.map((cap) => (

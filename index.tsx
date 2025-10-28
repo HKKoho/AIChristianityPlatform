@@ -1,4 +1,5 @@
 import './src/index.css';
+import './src/config/i18n'; // Initialize i18n
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';

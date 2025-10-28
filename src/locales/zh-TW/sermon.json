@@ -1,0 +1,44 @@
+{
+  "title": "講道稿生成器",
+  "inputForm": {
+    "topic": "講道主題",
+    "topicPlaceholder": "請輸入講道主題...",
+    "keyPoints": "重點要點",
+    "keyPointsPlaceholder": "請輸入重點（每行一個）...",
+    "sermonBasis": "講道基礎",
+    "biblicalStudy": "聖經研究",
+    "churchHistory": "教會歷史",
+    "systematicTheology": "系統神學",
+    "sermonLength": "講道長度",
+    "minutes": "分鐘",
+    "aiEngine": "AI 引擎",
+    "generate": "生成講道稿",
+    "viewSaved": "查看已保存的講道稿"
+  },
+  "result": {
+    "title": "已生成的講道稿",
+    "summary": "摘要",
+    "slides": "幻燈片",
+    "script": "完整講稿",
+    "save": "保存講道稿",
+    "saved": "講道稿已保存",
+    "generateNew": "生成新的"
+  },
+  "saved": {
+    "title": "已保存的講道稿",
+    "noSaved": "尚未保存任何講道稿",
+    "load": "載入",
+    "delete": "刪除",
+    "back": "返回生成器"
+  },
+  "admin": {
+    "title": "管理面板",
+    "aiPersona": "AI 角色配置",
+    "ethics": "倫理",
+    "politicalStance": "政治立場",
+    "tone": "語調",
+    "empathy": "同理心程度",
+    "save": "保存配置",
+    "back": "返回"
+  }
+}

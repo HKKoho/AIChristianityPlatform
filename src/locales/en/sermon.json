@@ -1,0 +1,44 @@
+{
+  "title": "Sermon Generator",
+  "inputForm": {
+    "topic": "Sermon Topic",
+    "topicPlaceholder": "Enter sermon topic...",
+    "keyPoints": "Key Points",
+    "keyPointsPlaceholder": "Enter key points (one per line)...",
+    "sermonBasis": "Sermon Basis",
+    "biblicalStudy": "Biblical Study",
+    "churchHistory": "Church History",
+    "systematicTheology": "Systematic Theology",
+    "sermonLength": "Sermon Length",
+    "minutes": "minutes",
+    "aiEngine": "AI Engine",
+    "generate": "Generate Sermon",
+    "viewSaved": "View Saved Sermons"
+  },
+  "result": {
+    "title": "Generated Sermon",
+    "summary": "Summary",
+    "slides": "Slides",
+    "script": "Full Script",
+    "save": "Save Sermon",
+    "saved": "Sermon Saved",
+    "generateNew": "Generate New"
+  },
+  "saved": {
+    "title": "Saved Sermons",
+    "noSaved": "No saved sermons yet",
+    "load": "Load",
+    "delete": "Delete",
+    "back": "Back to Generator"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "aiPersona": "AI Persona Configuration",
+    "ethics": "Ethics",
+    "politicalStance": "Political Stance",
+    "tone": "Tone",
+    "empathy": "Empathy Level",
+    "save": "Save Configuration",
+    "back": "Back"
+  }
+}
