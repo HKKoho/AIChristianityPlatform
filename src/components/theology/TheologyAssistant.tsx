@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Chat } from '../../../services/multiProviderChatService';
 import { TheologyAssistantMode, OLLAMA_MODELS } from '../../../types';
+import { LanguageSwitcher } from '../common/LanguageSwitcher';
 
 interface TheologyAssistantProps {
   onBack: () => void;
@@ -75,25 +76,28 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
             <h1 className="text-2xl font-bold">{t('theology:heading.theologyAssistant')}</h1>
           </div>
 
-          <div className="flex gap-2">
-            <button
-              onClick={() => setMode(TheologyAssistantMode.CHAT)}
-              className={`px-4 py-2 rounded-md ${mode === TheologyAssistantMode.CHAT ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'}`}
-            >
-              {t('theology:tab.chat')}
-            </button>
-            <button
-              onClick={() => setMode(TheologyAssistantMode.CHURCH_HISTORY)}
-              className={`px-4 py-2 rounded-md ${mode === TheologyAssistantMode.CHURCH_HISTORY ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'}`}
-            >
-              {t('theology:tab.churchHistory')}
-            </button>
-            <button
-              onClick={() => setMode(TheologyAssistantMode.SYSTEMATIC_THEOLOGY)}
-              className={`px-4 py-2 rounded-md ${mode === TheologyAssistantMode.SYSTEMATIC_THEOLOGY ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'}`}
-            >
-              {t('theology:tab.systematicTheology')}
-            </button>
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+            <div className="flex gap-2">
+              <button
+                onClick={() => setMode(TheologyAssistantMode.CHAT)}
+                className={`px-4 py-2 rounded-md ${mode === TheologyAssistantMode.CHAT ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+              >
+                {t('theology:tab.chat')}
+              </button>
+              <button
+                onClick={() => setMode(TheologyAssistantMode.CHURCH_HISTORY)}
+                className={`px-4 py-2 rounded-md ${mode === TheologyAssistantMode.CHURCH_HISTORY ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+              >
+                {t('theology:tab.churchHistory')}
+              </button>
+              <button
+                onClick={() => setMode(TheologyAssistantMode.SYSTEMATIC_THEOLOGY)}
+                className={`px-4 py-2 rounded-md ${mode === TheologyAssistantMode.SYSTEMATIC_THEOLOGY ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+              >
+                {t('theology:tab.systematicTheology')}
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -106,8 +110,8 @@ export const TheologyAssistant: React.FC<TheologyAssistantProps> = ({ onBack }) 
             {messages.length === 0 && (
               <div className="text-center text-gray-400 py-12">
                 <h3 className="text-xl mb-4">
-                  {mode === TheologyAssistantMode.CHURCH_HISTORY && t('theology:placeholder.exploreChurchHistory')}
-                  {mode === TheologyAssistantMode.SYSTEMATIC_THEOLOGY && t('theology:placeholder.learnSystematicTheology')}
+                  {mode === TheologyAssistantMode.CHURCH_HISTORY && `${t('theology:placeholder.exploreChurchHistory')} ... ${t('theology:placeholder.startChat')}`}
+                  {mode === TheologyAssistantMode.SYSTEMATIC_THEOLOGY && `${t('theology:placeholder.learnSystematicTheology')} ... ${t('theology:placeholder.startChat')}`}
                   {mode === TheologyAssistantMode.CHAT && t('theology:placeholder.startChat')}
                 </h3>
                 <p className="text-sm">{t('theology:placeholder.enterQuestion')}</p>

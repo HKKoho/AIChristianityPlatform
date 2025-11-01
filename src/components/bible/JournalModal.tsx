@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGame } from './hooks/useGame';
 import Icon from './Icon';
 
@@ -7,6 +8,7 @@ interface JournalModalProps {
 }
 
 const JournalModal: React.FC<JournalModalProps> = ({ onClose }) => {
+  const { t } = useTranslation('bibleGame');
   const { journalEntries } = useGame();
 
   return (
@@ -21,12 +23,12 @@ const JournalModal: React.FC<JournalModalProps> = ({ onClose }) => {
       >
         <div className="flex justify-between items-start">
             <h2 id="journal-title" className="text-4xl font-bold text-amber-900 mb-4" style={{fontFamily: "'Trajan Pro', serif"}}>
-                智慧卷軸
+                {t('bibleGame:ui.wisdomScroll')}
             </h2>
-            <button 
-              onClick={onClose} 
+            <button
+              onClick={onClose}
               className="text-stone-600 hover:text-stone-900 transition-colors rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-amber-500 focus-visible:ring-offset-amber-100"
-              aria-label="關閉日誌"
+              aria-label={t('bibleGame:ui.closeJournal')}
             >
                 <Icon name="x" className="w-8 h-8"/>
             </button>
@@ -34,7 +36,7 @@ const JournalModal: React.FC<JournalModalProps> = ({ onClose }) => {
 
         <div className="overflow-y-auto flex-grow pr-2">
             {journalEntries.length === 0 ? (
-                <p className="text-center text-stone-700 mt-8">您的日誌是空的。完成任務以收集智慧。</p>
+                <p className="text-center text-stone-700 mt-8">{t('bibleGame:ui.emptyJournal')}</p>
             ) : (
                 <div className="space-y-4">
                     {journalEntries.map(entry => (

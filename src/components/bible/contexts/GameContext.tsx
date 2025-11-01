@@ -2,7 +2,7 @@
 import React, { createContext, useState, useMemo, useCallback, ReactNode } from 'react';
 import type { GameContextType, JournalEntry } from '../biblTypes';
 import { BibleVersion } from '../constants';
-import { locations } from '../data/gameData';
+import { useGameData } from '../hooks/useGameData';
 
 export const GameContext = createContext<GameContextType | undefined>(undefined);
 
@@ -11,6 +11,7 @@ interface GameProviderProps {
 }
 
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
+  const { locations } = useGameData();
   const [completedQuests, setCompletedQuests] = useState<Set<string>>(new Set());
   const [journalEntries, setJournalEntries] = useState<JournalEntry[]>([]);
   const [bibleVersion, setBibleVersion] = useState<BibleVersion>(BibleVersion.NIV);
@@ -28,7 +29,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       }
     });
     return unlocked;
-  }, [completedQuests]);
+  }, [completedQuests, locations]);
 
   const completeQuest = useCallback((questId: string, journalEntry: JournalEntry) => {
     setCompletedQuests(prev => new Set(prev).add(questId));

@@ -1,0 +1,179 @@
+{
+  "quests": {
+    "q1": {
+      "character": "Abraham",
+      "question": "God made a covenant with me, marked by a specific sign. What was this covenant primarily about?",
+      "options": [
+        "A promise of a new ship.",
+        "A promise of land, descendants, and blessing.",
+        "A contract to build pyramids.",
+        "A decree to eat only vegetables."
+      ],
+      "explanation": "The Abrahamic Covenant (Genesis 12, 15, 17) was God's foundational promise. The sign of this covenant was circumcision, a physical mark symbolizing being set apart. This theme of 'being set apart' foreshadows the concept of being grafted into Christ's name.",
+      "journalTitle": "The Abrahamic Covenant",
+      "journalContent": "A covenant is a sacred promise. God promised Abraham land, countless descendants, and that all nations would be blessed through him. This laid the foundation for God's ongoing relationship with humanity.",
+      "deepDiveTitle": "Covenant Theology",
+      "deepDiveContent": "In Hebrew, covenant is 'berit.' It's not merely a contract; it's a solemn oath binding two parties together. Ancient covenants often included a ceremony or sign, like circumcision. This concept of a binding, relational commitment is crucial to understanding later biblical themes, including the New Covenant established by Jesus.",
+      "deepDiveSources": [
+        {"text": "Genesis 17:1-14 (NIV)", "url": "https://www.biblegateway.com/passage/?search=Genesis+17&version=NIV"},
+        {"text": "Early Church Fathers on Covenant", "url": "#"}
+      ]
+    },
+    "q2": {
+      "character": "Moses",
+      "question": "At Mount Sinai, I received the Law for Israel, which included many purification rituals involving blood. What was the primary purpose of these rituals?",
+      "options": [
+        "To cool off in the desert heat.",
+        "To prepare for annual swimming competitions.",
+        "To cleanse ritual impurity and restore the opportunity to draw near to God.",
+        "To wash clothes before festivals."
+      ],
+      "explanation": "The laws of Leviticus (Leviticus 11-15) prescribed washings with blood, and sacrificial rituals to cleanse individuals from impurity or corruption (e.g., after contact with a corpse or having a skin disease). This wasn't about physical dirt, but about being in a state of holiness to approach the holy God. Blood was a powerful symbol of spiritual cleansing.",
+      "journalTitle": "Cleansing with Water",
+      "journalContent": "The Law given to Moses taught that God is holy, and people need to be cleansed to approach Him. Blood was the primary means of this ritual cleansing, symbolizing the transformation from an unclean state to a clean state.",
+      "deepDiveTitle": "Ritual Purity vs Moral Purity",
+      "deepDiveContent": "It's important to distinguish between ritual impurity and sin. One could become ritually impure without committing sin. These laws taught Israel a profound lesson: approaching God requires holiness. Later prophets would emphasize that true cleansing of the heart is more important than external rituals, a theme John the Baptist and Jesus would further develop.",
+      "deepDiveSources": [
+        {"text": "Leviticus 15:31 (ESV)", "url": "https://www.biblegateway.com/passage/?search=Leviticus+15:31&version=ESV"},
+        {"text": "Hebrews 9:13-14 (KJV)", "url": "https://www.biblegateway.com/passage/?search=Hebrews+9:13-14&version=KJV"}
+      ]
+    },
+    "q5": {
+      "character": "Ezekiel",
+      "question": "During the exile in Babylon, I conveyed God's promise to give His people a 'new heart' and a 'new spirit.' What did this promise primarily mean?",
+      "options": [
+        "A physical heart transplant.",
+        "An appreciation for new music styles.",
+        "An inner, spiritual transformation enabling obedience to God.",
+        "The ability to learn new languages."
+      ],
+      "explanation": "Ezekiel 36:25-27 is a key Old Testament passage prophesying God's future work of inner cleansing and renewal. God promised to cleanse His people with clean water, remove their 'heart of stone' (hard heart), and give them a 'heart of flesh' (soft heart), placing His Spirit within them. This directly foreshadows the rebirth and indwelling of the Holy Spirit symbolized in Christian baptism.",
+      "journalTitle": "The Promise of a New Heart",
+      "journalContent": "The prophet Ezekiel prophesied a New Covenant that transcends external rituals. God promised to transform His people from within, cleansing them and giving them His Spirit so they could follow His ways.",
+      "deepDiveTitle": "Regeneration in the Old Testament",
+      "deepDiveContent": "While 'regeneration' is a New Testament concept, its roots are deeply planted in Old Testament promises. Passages like Ezekiel 36 and Jeremiah 31:31-34 (about the New Covenant written on the heart) point to God's plan to fundamentally work on the human heart. It's no longer just about following external laws, but having a transformed heart that desires to obey God. Christian baptism is a sign of this promise fulfilled.",
+      "deepDiveSources": [
+        {"text": "Ezekiel 36:25-27 (NIV)", "url": "https://www.biblegateway.com/passage/?search=Ezekiel+36:25-27&version=NIV"},
+        {"text": "Jeremiah 31:31-34 (ESV)", "url": "https://www.biblegateway.com/passage/?search=Jeremiah+31:31-34&version=ESV"}
+      ]
+    },
+    "q3": {
+      "character": "John the Baptist",
+      "question": "I baptized people in the Jordan River. My baptism was...",
+      "options": [
+        "A baptism of repentance for the forgiveness of sins.",
+        "Joining the local fishing club.",
+        "An initiation rite for the Roman army.",
+        "A meaningless cultural tradition."
+      ],
+      "explanation": "John's baptism was a powerful public declaration. People confessed their sins and turned to God, preparing for the coming Messiah. It linked the Old Testament theme of cleansing with water to the urgent call for personal repentance.",
+      "journalTitle": "The Baptism of Repentance",
+      "journalContent": "John the Baptist was the bridge between the Old and New Testaments. His baptism in the Jordan River symbolized turning away from sin and preparing hearts to receive the Messiah, Jesus.",
+      "deepDiveTitle": "Mikveh and John's Baptism",
+      "deepDiveContent": "Jewish tradition already had ritual immersion in a 'mikveh' for ceremonial cleansing. John's baptism was similar in form but radical in its message, applying this ritual to all Israel as a sign of national repentance. He proclaimed that One greater than he was coming, who would baptize not only with water but with the Holy Spirit and fire.",
+      "deepDiveSources": [
+        {"text": "Mark 1:4-8 (NIV)", "url": "https://www.biblegateway.com/passage/?search=Mark+1:4-8&version=NIV"},
+        {"text": "Matthew 3:11 (ESV)", "url": "https://www.biblegateway.com/passage/?search=Matthew+3:11&version=ESV"}
+      ]
+    },
+    "q4": {
+      "character": "Apostle Peter",
+      "question": "On the day of Pentecost, I told the crowd to 'repent and be baptized.' What was the purpose?",
+      "options": [
+        "To get a free meal.",
+        "To cool off in the Jerusalem sun.",
+        "For the forgiveness of your sins and to receive the gift of the Holy Spirit.",
+        "To register for a new community census."
+      ],
+      "explanation": "Peter's sermon in Acts chapter 2 marked the birth of the Christian church. Baptism was now explicitly linked with faith in Jesus Christ, forgiveness of sins through His death and resurrection, and the indwelling of the Holy Spirit. This was the initiation rite into the New Covenant community.",
+      "journalTitle": "New Covenant Baptism",
+      "journalContent": "Christian baptism, as preached by Peter, is the culmination of salvation history. It combines the themes of covenant (joining God's people), cleansing (forgiveness of sins), and new life (receiving the Holy Spirit).",
+      "deepDiveTitle": "Baptism: Symbol of Union with Christ",
+      "deepDiveContent": "The Apostle Paul later explained that baptism is spiritually dying, being buried, and rising with Jesus (Romans 6:3-4). When a person is immersed in water, it symbolizes the death of the old sinful self. Coming out of the water symbolizes resurrection to new life in Christ. This is a profound picture of the gospel itself.",
+      "deepDiveSources": [
+        {"text": "Acts 2:38-39 (KJV)", "url": "https://www.biblegateway.com/passage/?search=Acts+2:38-39&version=KJV"},
+        {"text": "Romans 6:3-4 (NIV)", "url": "https://www.biblegateway.com/passage/?search=Romans+6:3-4&version=NIV"},
+        {"text": "Didache on Baptism (Early Church Document)", "url": "#"}
+      ]
+    },
+    "q6": {
+      "character": "Apostle Paul",
+      "question": "In my letter to the Galatians, I mentioned that those baptized into Christ have 'clothed themselves with Christ.' What is the spiritual meaning of this phrase?",
+      "options": [
+        "Wearing special clothing with Christ's image.",
+        "In God's eyes, our identity is completely covered by Christ's righteousness.",
+        "Joining a fashion club called 'Christ.'",
+        "Receiving a new cloak at baptism."
+      ],
+      "explanation": "'Clothing oneself with Christ' (Galatians 3:27) is a powerful metaphor. It means that when we are united with Christ through faith and baptism, God no longer sees us as our sinful old selves, but sees Christ's perfection and righteousness. Our identity is fundamentally changed. We are now 'in Christ,' with a new status and family.",
+      "journalTitle": "Clothed with Christ",
+      "journalContent": "Baptism is not just about washing away sins, it's about putting on a new identity. The Apostle Paul taught that in baptism, we clothe ourselves with Christ Himself. Our old identity is gone, and we now live as children of God in Christ's righteousness.",
+      "deepDiveTitle": "Identity in Christ",
+      "deepDiveContent": "Paul's theology centers on the concept of being 'in Christ.' This is a profound spiritual union. Baptism is the outward sign of this union. As Romans 6 explains, we die, are buried, and rise with Christ; as Galatians says, we clothe ourselves with Him. This means Christ's victory becomes our victory, His righteousness becomes our righteousness, His relationship with the Father becomes our relationship. This radically transforms how Christians see themselves and live.",
+      "deepDiveSources": [
+        {"text": "Galatians 3:26-27 (NIV)", "url": "https://www.biblegateway.com/passage/?search=Galatians+3:26-27&version=NIV"},
+        {"text": "Colossians 2:12 (ESV)", "url": "https://www.biblegateway.com/passage/?search=Colossians+2:12&version=ESV"}
+      ]
+    }
+  },
+  "locations": {
+    "l1": {"name": "Ur of the Chaldeans", "era": "Patriarchal Period"},
+    "l2": {"name": "Mount Sinai", "era": "Exodus Period"},
+    "l5": {"name": "Babylon", "era": "Exile Period"},
+    "l3": {"name": "Jordan River", "era": "Prophetic Period"},
+    "l4": {"name": "Jerusalem", "era": "Apostolic Period"},
+    "l6": {"name": "Corinth", "era": "Church Period"}
+  },
+  "levels": {
+    "level1": {
+      "name": "Foundations of Faith",
+      "discussionPrompts": [
+        "How does the concept of 'covenant' change your view of relationship with God?",
+        "Why was physical cleansing so important in the Old Testament, and how does it point to deeper spiritual realities?"
+      ]
+    },
+    "level2": {
+      "name": "Promise of the New Covenant",
+      "discussionPrompts": [
+        "How does Ezekiel's promise of a 'new heart' pave the way for Jesus' teaching and Christian baptism?",
+        "What role does repentance play in John the Baptist's ministry? How does it relate to our understanding of baptism today?"
+      ]
+    },
+    "level3": {
+      "name": "Building the Church",
+      "discussionPrompts": [
+        "According to Peter's Pentecost sermon, what is the relationship between baptism and receiving the Holy Spirit?",
+        "What are the practical implications of 'clothing oneself with Christ' for a Christian's daily life?"
+      ]
+    }
+  },
+  "ui": {
+    "closeQuest": "Close quest",
+    "messageFrom": "Message from",
+    "time": "Time",
+    "seconds": "seconds",
+    "timeUp": "Time's up!",
+    "correct": "Correct!",
+    "notQuite": "Not quite...",
+    "timeUpMessage": "Your time is up. Feel free to close this window and try again.",
+    "continueJourney": "Continue Journey",
+    "deepDive": "Deep Dive",
+    "deepDiveTitle": "Deep Dive: {{title}}",
+    "sourceFinder": "Source Finder",
+    "exploreDeeper": "Explore Deeper",
+    "exploreQuestion": "Have more questions about this topic? Ask the AI assistant!",
+    "selectModel": "Select model:",
+    "questionPlaceholder": "e.g., How does this concept apply in the modern church?",
+    "ask": "Ask",
+    "backToExplanation": "Back to Explanation",
+    "wisdomScroll": "Wisdom Scroll",
+    "closeJournal": "Close journal",
+    "emptyJournal": "Your journal is empty. Complete quests to collect wisdom.",
+    "levelComplete": "Era Complete!",
+    "levelCompleteDesc": "You have completed the '{{name}}' era.",
+    "discussionPrompts": "Discussion Prompts",
+    "continueYourJourney": "Continue Your Journey",
+    "openAIPlaceholder": "OpenAI integration coming soon. Please use the Gemini model for queries.",
+    "aiError": "Sorry, an error occurred while generating the answer. Please try again later."
+  }
+}

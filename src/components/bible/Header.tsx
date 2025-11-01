@@ -4,6 +4,7 @@ import { useGame } from './hooks/useGame';
 import { BibleVersion } from './constants';
 import JournalModal from './JournalModal';
 import Icon from './Icon';
+import { LanguageSwitcher } from '../common/LanguageSwitcher';
 
 const Header: React.FC = () => {
   const { t } = useTranslation(['common', 'bible']);
@@ -17,6 +18,7 @@ const Header: React.FC = () => {
           {t('bible:heading.bibleJourney')}
         </h1>
         <div className="flex items-center gap-4">
+          <LanguageSwitcher />
           <div className="flex items-center gap-2">
             <label htmlFor="bible-version" className="text-sm font-semibold">{t('bible:heading.version')}</label>
             <select

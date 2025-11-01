@@ -7,6 +7,7 @@ import MindMap from './MindMap';
 import { STAGES } from './constants';
 import { JourneyStage, TheologicalPerspective, ChatMessage, MindMapData } from './journeyTypes';
 import * as geminiService from '../../../services/geminiService';
+import { LanguageSwitcher } from '../common/LanguageSwitcher';
 
 interface TheologicalJourneyProps {
   onBack: () => void;
@@ -105,7 +106,8 @@ const TheologicalJourney: React.FC<TheologicalJourneyProps> = ({ onBack }) => {
           {t('common:button.backToMenu')}
         </button>
         <h1 className="text-2xl font-bold text-center flex-1">{t('journey:heading.theologistThoughtMap')}</h1>
-        <div className="flex-1 flex justify-end">
+        <div className="flex-1 flex items-center justify-end gap-4">
+          <LanguageSwitcher />
           <span className="text-xs text-slate-400">Powered by Gemini AI</span>
         </div>
       </header>

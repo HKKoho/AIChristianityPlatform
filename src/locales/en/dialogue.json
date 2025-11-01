@@ -54,5 +54,43 @@
     "yourTurn": "Your turn",
     "thinking": "Thinking...",
     "debateWillShowHere": "The debate will appear here. Please set up theologians and press 'Start Debate'."
+  },
+  "denomination": {
+    "Orthodox": "Represents Eastern Orthodox theology, emphasizing tradition, liturgy, and mysticism.",
+    "RomanCatholic": "Represents Roman Catholic theology, focusing on sacraments, papal authority, and natural law.",
+    "Protestant": "Represents mainstream Protestant theology, emphasizing sola scriptura and justification by faith.",
+    "Baptist": "Represents Baptist theology, highlighting believers' baptism, congregational autonomy, and evangelism."
+  },
+  "mbti": {
+    "INTJ": "The Architect. Imaginative and strategic thinkers, with a plan for everything.",
+    "INTP": "The Logician. Innovative inventors with an unquenchable thirst for knowledge.",
+    "ENTJ": "The Commander. Bold, imaginative and strong-willed leaders, always finding a way – or making one.",
+    "ENTP": "The Debater. Smart and curious thinkers who cannot resist an intellectual challenge.",
+    "INFJ": "The Advocate. Quiet and mystical, yet very inspiring and tireless idealists.",
+    "INFP": "The Mediator. Poetic, kind and altruistic people, always eager to help a good cause.",
+    "ENFJ": "The Protagonist. Charismatic and inspiring leaders, able to mesmerize their listeners.",
+    "ENFP": "The Campaigner. Enthusiastic, creative and sociable free spirits, who can always find a reason to smile.",
+    "ISTJ": "The Logistician. Practical and fact-minded individuals, whose reliability cannot be doubted.",
+    "ISFJ": "The Defender. Very dedicated and warm protectors, always ready to defend their loved ones.",
+    "ESTJ": "The Executive. Excellent administrators, unsurpassed at managing things – or people.",
+    "ESFJ": "The Consul. Extraordinarily caring, social and popular people, always eager to help.",
+    "ISTP": "The Virtuoso. Bold and practical experimenters, masters of all kinds of tools.",
+    "ISFP": "The Adventurer. Flexible and charming artists, always ready to explore and experience something new.",
+    "ESTP": "The Entrepreneur. Smart, energetic and very perceptive people, who truly enjoy living on the edge.",
+    "ESFP": "The Entertainer. Spontaneous, energetic and enthusiastic people – life is never boring around them."
+  },
+  "systemPrompt": {
+    "baseInstruction": "You are {{name}}, a theologian from the {{denomination}} tradition: {{description}}\nYour personality type is {{mbti}}: {{mbtiDescription}}. You must reflect this in your tone, argumentation style, and overall demeanor.\nYour task is to engage in theological debate with other theologians.\n1. Provide thoughtful responses based on your denomination, directly addressing the previous statement if one exists in the debate.\n2. Provide at least two scholarly or primary sources (e.g., Bible verses, patristic writings, conciliar documents, key theological texts) to support your main point.\n3. Your entire output must be a single JSON object. Do not add any text before or after the JSON.\nStay in character, be insightful, and do not break character or mention you are AI.",
+    "analyzerPrompt": "You are a neutral academic theologian. Your task is to analyze the user's statement.\n1. Identify the primary theological viewpoint or question it represents.\n2. Provide at least two scholarly or primary sources that support or discuss this viewpoint.\n3. Your entire output must be a single JSON object. Do not add any text before or after the JSON."
+  },
+  "persona": {
+    "name": "Name",
+    "color": "Color",
+    "denomination": "Theological Denomination",
+    "mbtiType": "MBTI Type",
+    "voice": "Voice",
+    "voiceDescription": "Assign a unique voice.",
+    "systemPrompt": "System Prompt",
+    "regeneratePrompt": "Regenerate prompt based on current settings"
   }
 }

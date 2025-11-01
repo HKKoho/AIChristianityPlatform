@@ -8,6 +8,7 @@ import { DialogueWindow } from './DialogueWindow';
 import { AnalysisResultDisplay } from './AnalysisResultDisplay';
 import { generateDebateResponse, generateAnalysisAndResponses, generateSpeech } from '../../../services/dialogueService';
 import { decode, decodeAudioData } from './utils/audioUtils';
+import { LanguageSwitcher } from '../common/LanguageSwitcher';
 
 type AppMode = 'dialogue' | 'analysis';
 
@@ -308,6 +309,10 @@ const TheologicalDialogue: React.FC<TheologicalDialogueProps> = ({ onBack }) => 
         >
           {t('common:button.back')}
         </button>
+
+        <div className="absolute top-4 right-4 z-50">
+          <LanguageSwitcher />
+        </div>
 
         <header className="text-center mb-8 mt-12">
           <h1

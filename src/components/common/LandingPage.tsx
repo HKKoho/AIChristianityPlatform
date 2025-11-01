@@ -70,8 +70,23 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
       <div className="container mx-auto px-4 py-8">
-        {/* Language Switcher */}
-        <div className="flex justify-end mb-4">
+        {/* Top Navigation Bar */}
+        <div className="flex justify-between items-center mb-4">
+          {/* Platform Link - Top Left */}
+          <a
+            href="https://christianityplatform.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-lg hover:shadow-xl"
+            title={t('common:platformLink')}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span className="text-sm font-medium">{t('common:platformHome')}</span>
+          </a>
+
+          {/* Language Switcher - Top Right */}
           <LanguageSwitcher />
         </div>
 

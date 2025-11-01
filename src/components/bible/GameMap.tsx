@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGame } from './hooks/useGame';
-import { locations, quests, levels } from './data/gameData';
+import { useGameData } from './hooks/useGameData';
 import type { Quest } from '../biblTypes';
 import QuestModal from './QuestModal';
 import LevelCompleteModal from './LevelCompleteModal';
@@ -9,6 +9,7 @@ import Icon from './Icon';
 
 const GameMap: React.FC = () => {
   const { t } = useTranslation(['common', 'bible']);
+  const { quests, locations, levels } = useGameData();
   const { unlockedLocations, completedQuests } = useGame();
   const [activeQuest, setActiveQuest] = useState<Quest | null>(null);
   const [completedLevelId, setCompletedLevelId] = useState<string | null>(null);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiEngine, SermonBasis, SermonLength, OLLAMA_MODELS } from '../../../types';
+import { LanguageSwitcher } from '../common/LanguageSwitcher';
 
 interface InputFormProps {
   onGenerate: (topic: string, keyPoints: string[], basis: SermonBasis, length: SermonLength, config?: { model: string; temperature: number; topP: number }) => void;
@@ -45,9 +46,12 @@ export const InputForm: React.FC<InputFormProps> = ({
 
   return (
     <div className="w-full max-w-2xl">
-      <button onClick={onBackToLanding} className="mb-4 text-gray-400 hover:text-gray-200">
-        {t('common:button.backToMenu')}
-      </button>
+      <div className="flex items-center justify-between mb-4">
+        <button onClick={onBackToLanding} className="text-gray-400 hover:text-gray-200">
+          {t('common:button.backToMenu')}
+        </button>
+        <LanguageSwitcher />
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>

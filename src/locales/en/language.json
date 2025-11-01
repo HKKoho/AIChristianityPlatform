@@ -1,12 +1,40 @@
 {
   "title": "Biblical Language Study",
+  "welcome": "Welcome to Biblical Textual Learning Basics",
+  "selectLanguage": "Choose a biblical language to learn",
   "hebrew": "Hebrew",
-  "greek": "Greek",
+  "greek": "Classical Greek",
+  "hebrewDescription": "Old Testament",
+  "greekDescription": "New Testament",
   "selectVerse": "Select Verse",
   "practice": "Practice Pronunciation",
   "record": "Record",
   "stop": "Stop",
   "playback": "Playback",
   "feedback": "Feedback",
-  "alphabet": "Alphabet Learning"
+  "alphabet": "Alphabet Learning",
+  "permissions": {
+    "title": "Permissions Required",
+    "description": "This app needs access to your microphone and speakers to function properly:",
+    "speaker": "Speaker Permission",
+    "speakerDescription": "Play pronunciation examples and hear correct pronunciation",
+    "microphone": "Microphone Permission",
+    "microphoneDescription": "Record your pronunciation and receive AI feedback",
+    "tip": "Tip:",
+    "tipDescription": "The browser will request permissions when needed. Please click \"Allow\" to enable all features."
+  },
+  "modes": {
+    "alphabetLearning": "Alphabet Learning",
+    "alphabetDescription": "Learn all letters and pronunciation",
+    "wordPractice": "Word Practice",
+    "wordDescription": "Pronunciation practice with AI feedback",
+    "verseLearning": "Verse Learning",
+    "verseDescription": "Biblical verses key vocabulary",
+    "vocabularyFlashcards": "Vocabulary Flashcards",
+    "vocabularyDescription": "Learn vocabulary with spaced repetition",
+    "listeningGame": "Listening Comprehension Game",
+    "listeningDescription": "Listen and identify words - 100 word challenge",
+    "pronunciationChallenge": "Pronunciation Challenge",
+    "pronunciationDescription": "Distinguish correct and incorrect pronunciation"
+  }
 }

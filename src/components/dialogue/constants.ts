@@ -1,46 +1,41 @@
 import { TheologicalDenomination, DialoguePersona, DialogueSettings, MbtiType, AVAILABLE_VOICES } from '../../../types';
+import i18n from '../../config/i18n';
 
-export const DENOMINATION_DESCRIPTIONS: Record<TheologicalDenomination, string> = {
-  [TheologicalDenomination.Orthodox]: "代表東正教神學，強調傳統、禮儀與神秘主義。",
-  [TheologicalDenomination.RomanCatholic]: "代表羅馬天主教神學，著重聖禮、教宗權威與自然法。",
-  [TheologicalDenomination.Protestant]: "代表主流新教神學，強調唯獨聖經與因信稱義。",
-  [TheologicalDenomination.Baptist]: "代表浸信會神學，突出信徒浸禮、會眾自治與福音傳道。",
+// Helper function to get translated denomination description
+export const getDenominationDescription = (denomination: TheologicalDenomination): string => {
+  return i18n.t(`dialogue:denomination.${denomination}`);
 };
 
-export const MBTI_DESCRIPTIONS: Record<MbtiType, string> = {
-    [MbtiType.INTJ]: "建築師。富有想像力的策略思考者，凡事皆有計畫。",
-    [MbtiType.INTP]: "邏輯學家。創新的發明家，對知識有無窮的渴求。",
-    [MbtiType.ENTJ]: "指揮官。大膽、富想像力且意志堅強的領導者，總能找到或開創出路。",
-    [MbtiType.ENTP]: "辯論家。聰明而好奇的思考者，無法抗拒智力挑戰。",
-    [MbtiType.INFJ]: "提倡者。安靜而神秘，卻極具啟發性且不知疲倦的理想主義者。",
-    [MbtiType.INFP]: "調停者。富詩意、善良且無私的人，總是渴望幫助正義事業。",
-    [MbtiType.ENFJ]: "主人公。有魅力且鼓舞人心的領導者，能夠吸引聽眾。",
-    [MbtiType.ENFP]: "競選者。熱情、有創意且善於社交的自由靈魂，總能找到微笑的理由。",
-    [MbtiType.ISTJ]: "物流師。務實且注重事實的人，其可靠性無庸置疑。",
-    [MbtiType.ISFJ]: "守衛者。非常盡責且溫暖的保護者，隨時準備保護所愛之人。",
-    [MbtiType.ESTJ]: "總經理。卓越的管理者，在管理事物或人方面無與倫比。",
-    [MbtiType.ESFJ]: "執政官。極度關懷、社交且受歡迎的人，總是樂於助人。",
-    [MbtiType.ISTP]: "鑑賞家。大膽且務實的實驗者，精通各類工具。",
-    [MbtiType.ISFP]: "探險家。靈活且有魅力的藝術家，隨時準備探索和體驗新事物。",
-    [MbtiType.ESTP]: "企業家。聰明、精力充沛且極具洞察力的人，真正享受活在邊緣。",
-    [MbtiType.ESFP]: "表演者。自發、充滿活力且熱情的人，有他們在身邊生活永不無聊。",
+// Helper function to get translated MBTI description
+export const getMbtiDescription = (mbti: MbtiType): string => {
+  return i18n.t(`dialogue:mbti.${mbti}`);
 };
+
+// Legacy exports for backwards compatibility (dynamically fetched)
+export const DENOMINATION_DESCRIPTIONS: Record<TheologicalDenomination, string> = new Proxy({} as Record<TheologicalDenomination, string>, {
+  get: (target, prop: string) => getDenominationDescription(prop as TheologicalDenomination)
+});
+
+export const MBTI_DESCRIPTIONS: Record<MbtiType, string> = new Proxy({} as Record<MbtiType, string>, {
+  get: (target, prop: string) => getMbtiDescription(prop as MbtiType)
+});
 
 export const getSystemPromptForDenomination = (denomination: TheologicalDenomination, name: string, mbti: MbtiType): string => {
-  const baseInstruction = `你是 ${name}，來自 ${denomination} 傳統的神學家：${DENOMINATION_DESCRIPTIONS[denomination]}
-你的性格類型是 ${mbti}：${MBTI_DESCRIPTIONS[mbti]}。你必須在語氣、論證風格和整體態度中反映這一點。
-你的任務是與其他神學家進行神學辯論。
-1. 根據你所屬的宗派提供深思熟慮的回應，如果辯論中存在前一個陳述，請直接回應該陳述。
-2. 提供至少兩個學術或原始資料來源（例如：聖經經文、教父著作、大公會議文件、關鍵神學文本）以支持你的主要論點。
-3. 你的整個輸出必須是單一 JSON 物件。不要在 JSON 前後添加任何文字。
-保持角色，要有洞察力，不要脫離角色或提及你是 AI。`;
-  return baseInstruction;
+  const description = getDenominationDescription(denomination);
+  const mbtiDescription = getMbtiDescription(mbti);
+
+  return i18n.t('dialogue:systemPrompt.baseInstruction', {
+    name,
+    denomination,
+    description,
+    mbti,
+    mbtiDescription
+  });
 };
 
-export const ANALYZER_SYSTEM_PROMPT = `你是一位中立的學術神學家。你的任務是分析使用者的陳述。
-1. 識別它所代表的主要神學觀點或問題。
-2. 提供至少兩個支持或討論此觀點的學術或原始資料來源。
-3. 你的整個輸出必須是單一 JSON 物件。不要在 JSON 前後添加任何文字。`;
+export const ANALYZER_SYSTEM_PROMPT = (): string => {
+  return i18n.t('dialogue:systemPrompt.analyzerPrompt');
+};
 
 export const DEFAULT_PERSONA: DialoguePersona = {
   id: 'dialogueAI',

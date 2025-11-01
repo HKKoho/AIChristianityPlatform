@@ -9,6 +9,7 @@ import { VerseSelector } from './VerseSelector';
 import { VerseDisplay } from './VerseDisplay';
 import { WORD_LISTS } from './constants';
 import { getPronunciationFeedback } from '../../../services/geminiService';
+import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import type { Language, Word, GameState, LearningMode } from './languageTypes';
 import type { BibleVerse } from './bibleVerses';
 
@@ -161,9 +162,12 @@ const BiblicalLanguage: React.FC<BiblicalLanguageProps> = ({ onBack }) => {
             {t('common:button.backToMenu')}
           </button>
 
-          <div className="absolute top-4 right-4 text-xs text-stone-400 flex items-center gap-2">
-            <span>Pronunciation powered by</span>
-            <span className="font-semibold text-blue-400">Google Gemini 2.5 Flash</span>
+          <div className="absolute top-4 right-4 flex items-center gap-4 z-50">
+            <LanguageSwitcher />
+            <div className="text-xs text-stone-400 flex items-center gap-2">
+              <span>Pronunciation powered by</span>
+              <span className="font-semibold text-blue-400">Google Gemini 2.5 Flash</span>
+            </div>
           </div>
 
           {!learningMode && gameState === 'selecting' && (

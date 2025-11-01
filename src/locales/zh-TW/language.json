@@ -1,12 +1,40 @@
 {
   "title": "聖經原文研讀",
+  "welcome": "歡迎來到聖經文本學習基礎",
+  "selectLanguage": "選擇一種聖經語言來學習",
   "hebrew": "希伯來文",
-  "greek": "希臘文",
+  "greek": "古典希臘文",
+  "hebrewDescription": "舊約聖經",
+  "greekDescription": "新約聖經",
   "selectVerse": "選擇經文",
   "practice": "練習發音",
   "record": "錄音",
   "stop": "停止",
   "playback": "播放",
   "feedback": "反饋",
-  "alphabet": "字母學習"
+  "alphabet": "字母學習",
+  "permissions": {
+    "title": "需要權限",
+    "description": "此應用程式需要訪問您的麥克風和揚聲器才能正常運作：",
+    "speaker": "揚聲器權限",
+    "speakerDescription": "播放發音範例並聆聽正確的發音",
+    "microphone": "麥克風權限",
+    "microphoneDescription": "錄製您的發音並接收 AI 反饋",
+    "tip": "提示：",
+    "tipDescription": "瀏覽器會在需要時請求權限，請點擊「允許」以啟用所有功能。"
+  },
+  "modes": {
+    "alphabetLearning": "字母表學習",
+    "alphabetDescription": "學習所有字母與發音",
+    "wordPractice": "單字練習",
+    "wordDescription": "發音練習與AI反饋",
+    "verseLearning": "經文學習",
+    "verseDescription": "聖經經文重點詞彙",
+    "vocabularyFlashcards": "詞彙記憶卡",
+    "vocabularyDescription": "間隔重複法學習詞彙",
+    "listeningGame": "聽力理解遊戲",
+    "listeningDescription": "聽音辨詞 100 詞挑戰",
+    "pronunciationChallenge": "發音挑戰",
+    "pronunciationDescription": "辨別正確與錯誤發音"
+  }
 }

@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DialoguePersona, TheologicalDenomination, MbtiType, AVAILABLE_VOICES, VoiceName } from '../../../types';
-import { DENOMINATION_DESCRIPTIONS, MBTI_DESCRIPTIONS, getSystemPromptForDenomination } from './constants';
+import { getDenominationDescription, getMbtiDescription, getSystemPromptForDenomination } from './constants';
 import { RobotIcon } from './icons/RobotIcon';
 import { RefreshIcon } from './icons/RefreshIcon';
 
@@ -11,7 +12,8 @@ interface PersonaCreatorProps {
 }
 
 export const PersonaCreator: React.FC<PersonaCreatorProps> = ({ persona, onPersonaChange, isDebateActive }) => {
-    
+  const { t } = useTranslation('dialogue');
+
   const handleDenominationChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     const newDenomination = e.target.value as TheologicalDenomination;
     onPersonaChange({
@@ -74,7 +76,7 @@ export const PersonaCreator: React.FC<PersonaCreatorProps> = ({ persona, onPerso
        <div className="grid grid-cols-5 gap-4">
         <div className="col-span-3">
           <label htmlFor={`name-${persona.id}`} className="block text-sm font-medium text-gray-300 mb-1">
-            Name
+            {t('dialogue:persona.name')}
           </label>
           <input
             type="text"
@@ -87,7 +89,7 @@ export const PersonaCreator: React.FC<PersonaCreatorProps> = ({ persona, onPerso
         </div>
         <div className="col-span-2">
             <label htmlFor={`color-${persona.id}`} className="block text-sm font-medium text-gray-300 mb-1">
-                Color
+                {t('dialogue:persona.color')}
             </label>
             <input
                 type="color"
@@ -101,7 +103,7 @@ export const PersonaCreator: React.FC<PersonaCreatorProps> = ({ persona, onPerso
       </div>
       <div>
         <label htmlFor={`denomination-${persona.id}`} className="block text-sm font-medium mb-1" style={{ color: persona.color }}>
-          Theological Denomination
+          {t('dialogue:persona.denomination')}
         </label>
         <select
           id={`denomination-${persona.id}`}
@@ -116,12 +118,12 @@ export const PersonaCreator: React.FC<PersonaCreatorProps> = ({ persona, onPerso
             </option>
           ))}
         </select>
-         <p className="text-xs text-gray-400 mt-1">{DENOMINATION_DESCRIPTIONS[persona.denomination]}</p>
+         <p className="text-xs text-gray-400 mt-1">{getDenominationDescription(persona.denomination)}</p>
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div>
             <label htmlFor={`mbti-${persona.id}`} className="block text-sm font-medium mb-1" style={{ color: persona.color }}>
-            MBTI Type
+            {t('dialogue:persona.mbtiType')}
             </label>
             <select
             id={`mbti-${persona.id}`}
@@ -136,11 +138,11 @@ export const PersonaCreator: React.FC<PersonaCreatorProps> = ({ persona, onPerso
                 </option>
             ))}
             </select>
-            <p className="text-xs text-gray-400 mt-1 h-10">{MBTI_DESCRIPTIONS[persona.mbti]}</p>
+            <p className="text-xs text-gray-400 mt-1 h-10">{getMbtiDescription(persona.mbti)}</p>
         </div>
         <div>
             <label htmlFor={`voice-${persona.id}`} className="block text-sm font-medium mb-1" style={{ color: persona.color }}>
-                Voice
+                {t('dialogue:persona.voice')}
             </label>
             <select
                 id={`voice-${persona.id}`}
@@ -155,19 +157,19 @@ export const PersonaCreator: React.FC<PersonaCreatorProps> = ({ persona, onPerso
                     </option>
                 ))}
             </select>
-            <p className="text-xs text-gray-400 mt-1 h-10">Assign a unique voice.</p>
+            <p className="text-xs text-gray-400 mt-1 h-10">{t('dialogue:persona.voiceDescription')}</p>
         </div>
       </div>
       <div>
         <div className="flex justify-between items-center mb-1">
           <label htmlFor={`prompt-${persona.id}`} className="block text-sm font-medium" style={{ color: persona.color }}>
-            System Prompt
+            {t('dialogue:persona.systemPrompt')}
           </label>
           <button
               onClick={handleRegeneratePrompt}
               disabled={isDebateActive}
               className="p-1 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              title="Regenerate prompt based on current settings"
+              title={t('dialogue:persona.regeneratePrompt')}
             >
               <RefreshIcon className="h-4 w-4" />
           </button>

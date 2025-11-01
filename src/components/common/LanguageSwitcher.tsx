@@ -16,7 +16,7 @@ export const LanguageSwitcher: React.FC = () => {
       title={i18n.language === 'zh-TW' ? 'Switch to English' : '切換至繁體中文'}
     >
       <span className="text-lg">🌐</span>
-      <span>{i18n.language === 'zh-TW' ? '中文' : 'EN'}</span>
+      <span>{i18n.language === 'zh-TW' ? 'EN' : '中文'}</span>
     </button>
   );
 };
